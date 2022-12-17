@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import { useAccessOptionsStore } from "@/stores/accessOptionsStore"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { storeToRefs } from 'pinia';
-const optionsStore = useAccessOptionsStore();
-const { accessOptionsList, getOptionIsEnabled } = optionsStore;
-const getOptionIsEnabled(hcmOn)
 </script>
 <template>
-  <header>
-    <h1 id="banner" role="banner">banner</h1>
-    <div v-for="accessOption in accessOptionsList" :key='accessOption.id'>
-      <p>{{ accessOption.optionName}}</p>
-    </div>
-  </header>
+  <header id="banner">
+      <h1 role="heading" aria-label="element.innerHTML" aria-level="1">Template Site</h1>
+    </header>
+    <a href="#maincontent">Skip to main content</a>
 </template>
 <style>
-header {
-  display: flex;
-  justify-self: center;
-  text-align: center;
-  background-color: #800080;
-  max-width: 80%;
-  min-height: 50px;
-  border-radius: 5;
-}
-h1 {
-  color: #fff;
-}
+  #banner {
+    border: solid 5px #660330;
+    display: flex;
+    flex-flow: row wrap;
+    align-self: center;
+    text-align: center;
+    background-color: #800080;
+    min-width: 50%;
+    min-height: 50px;
+    border-radius: 3em;
+  }
+
+  [role="heading"] {
+    justify-self: center;
+  }
 </style>
