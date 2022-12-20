@@ -1,34 +1,18 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import { useAccessOptionsStore } from "@/stores/accessOptionsStore"
+  import { useHiContrastStore } from "@/stores/hiContrastStore";
+  import { useShowAccessStore } from "@/stores/showAccessStore";
   import { storeToRefs } from 'pinia';
-  const store = useAccessOptionsStore();
-  const { accessOptionsList } = storeToRefs(store)
-  const { toggleAccessibilityOption, fetchOptions } = store;
-  const showAccess = ref(false)
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function toggleAccessibilityBox () {
-    showAccess.value = !showAccess.value
-  }
-  fetchOptions();
-  console.log(accessOptionsList);
+  const hiContrastStore = useHiContrastStore();
+  const showAccessStore = useShowAccessStore();
+  const { toggleHiContrast, hiContrastOn } = storeToRefs(hiContrastStore);
+  const { toggleShowAccessOn, showAccessOn } = storeToRefs(showAccessStore);
+  showAccessStore.fill();
 </script>
 <template>
-    <button @click="toggleAccessibilityOption(0)">Click for Accessibility Options </button>
-    <div v-if="showAccess" id="accessibility" class="colorAlpha">
-      <div v-for="accessOption in accessOptionsList" :key="accessOption.optionName" class="list">
-          <div class="item">
-            <span :class="{ completed: accessOption.isEnabled }"
-              >{{ accessOption.optionName }} is enabled: {{ accessOption.isEnabled }}</span
-            >
-            <div>
-              <button @click.stop="toggleAccessibilityOption(1)">Toggle {{ accessOption.optionName }}</button>
-            </div>
-            <br />
-          </div>
-        </div>
-      </div>
+    <button @v-model="toggleShowAccessOn()">Click for Accessibility Options </button>
+    <div v-if="showAccessState" id="accessibility" class="colorAlpha">
+            <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @onClick="toggleHiContrast()">Toggle Hi-Contrast Mode</button>
+    </div>
 </template>
 <style>
 #accessibility {
