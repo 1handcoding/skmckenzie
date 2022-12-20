@@ -3,7 +3,10 @@ import AccessBox from "@/components/AccessBox.vue";
 import AppHeader from "@/components/AppHeader.vue";
 import NavBar from "@/components/NavBar.vue";
 import FooterBox from "@/components/FooterBox.vue";
+import { useHiContrastStore } from "./stores/hiContrastStore";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const hiContrastStore = useHiContrastStore();
 </script>
 
 <template>
@@ -23,11 +26,11 @@ import FooterBox from "@/components/FooterBox.vue";
   text-align: center;
   color: #2c3e50;
 }
-#mastercontainer {
+#masterbox {
   color: whitesmoke;
   background-color: #660330;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   display: flex;
