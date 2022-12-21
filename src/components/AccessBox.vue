@@ -4,14 +4,17 @@
   import { storeToRefs } from 'pinia';
   const hiContrastStore = useHiContrastStore();
   const showAccessStore = useShowAccessStore();
-  const { toggleHiContrast, hiContrastOn } = storeToRefs(hiContrastStore);
-  const { toggleShowAccessOn, showAccessOn } = storeToRefs(showAccessStore);
-  showAccessStore.fill();
+  const toggleHiContrastOn = hiContrastStore;
+  const toggleShowAccessOn = showAccessStore;
+  const { hiContrastOn } = storeToRefs(hiContrastStore);
+  const { showAccessOn } = storeToRefs(showAccessStore);
+  return {showAccessOn, hiContrastOn}
+
 </script>
 <template>
     <button @v-model="toggleShowAccessOn()">Click for Accessibility Options </button>
-    <div v-if="showAccessState" id="accessibility" class="colorAlpha">
-            <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @onClick="toggleHiContrast()">Toggle Hi-Contrast Mode</button>
+    <div v-if="showAccessOn" id="accessibility" class="colorAlpha">
+            <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @onClick="toggleHiContrastOn()">Toggle Hi-Contrast Mode</button>
     </div>
 </template>
 <style>
