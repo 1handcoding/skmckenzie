@@ -1,21 +1,18 @@
 <script setup lang="ts">
-  import { useHiContrastStore } from "@/stores/hiContrastStore";
-  import { useShowAccessStore } from "@/stores/showAccessStore";
+  import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
   import { storeToRefs } from 'pinia';
-  const hiContrastStore = useHiContrastStore();
-  const showAccessStore = useShowAccessStore();
-  const toggleHiContrastOn = hiContrastStore;
-  const toggleShowAccessOn = showAccessStore;
-  const { hiContrastOn } = storeToRefs(hiContrastStore);
-  const { showAccessOn } = storeToRefs(showAccessStore);
-  return {showAccessOn, hiContrastOn}
-
+  const store = useAccessOptionsStore();
+  const { hiContrastOn } = storeToRefs(store);
+  const { showAccessOptions } = storeToRefs(store);
+  const { toggleShowAccessOptionsOn, toggleHiContrastOn } = store;
 </script>
+
 <template>
-    <button @v-model="toggleShowAccessOn()">Click for Accessibility Options </button>
-    <div v-if="showAccessOn" id="accessibility" class="colorAlpha">
-            <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @onClick="toggleHiContrastOn()">Toggle Hi-Contrast Mode</button>
+    <button @click.stop="toggleShowAccessOptionsOn()">Click for Accessibility Options </button>
+    <div  v-if="showAccessOptions" id="accessibility" class="colorAlpha">
+      <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast Mode</button>
     </div>
+    <p>{{ showAccessOptions }}</p>
 </template>
 <style>
 #accessibility {

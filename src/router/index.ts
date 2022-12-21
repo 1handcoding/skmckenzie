@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AboutView from "../views/AboutView.vue";
 import AlphaView from "../views/AlphaView.vue";
 import BetaView from "../views/BetaView.vue";
 import DeltaView from "../views/DeltaView.vue";
@@ -10,28 +9,28 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/aboutview",
-      name: "about",
-      component: AboutView,
+      path: "/",
+      name: "default",
+      component: AlphaView,
     },
     {
       path: "/alphaview",
-      name: "alpha",
+      name: "alphaview",
       component: AlphaView,
     },
     {
       path: "/betaview",
-      name: "beta",
+      name: "betaview",
       component: BetaView,
     },
     {
       path: "/deltaview",
-      name: "delta",
+      name: "deltaview",
       component: DeltaView,
     },
     {
       path: "/gammaview",
-      name: "gamma",
+      name: "gammaview",
       component: GammaView,
     },
   ]

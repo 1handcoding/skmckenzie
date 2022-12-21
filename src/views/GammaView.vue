@@ -27,6 +27,7 @@
         <p class="color-hex">#f5f5f5</p>
       </div>
     </div>
+    <img src="https://placekitten.com/600/150" />
   </container>
 </template>
 <style>
