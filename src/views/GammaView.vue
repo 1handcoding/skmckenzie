@@ -1,7 +1,7 @@
 <template>
-  <container id="main">
-    <h2>Colors:</h2>
-    <div class="color-container">
+  <div id="main">
+    <h2 role="heading" aria-level="2">Colors</h2>
+    <div class="color-div">
       <div class="color-panel thundergray">
         <p class="color-label">Thundercloud Gray</p>
         <p class="color-hex">#494f46</p>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <img src="https://placekitten.com/600/150" />
-  </container>
+  </div>
 </template>
 <style>
 .color-panel {
@@ -40,7 +40,7 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.color-container {
+.color-div {
   width: 80%;
   border: 3px chartreuse solid;
   margin: 0px auto;

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1 role="heading" aria-level="2">This is an about page</h1>
   </div>
 </template>
 

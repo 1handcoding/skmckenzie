@@ -1,6 +1,12 @@
+<script setup lang="ts">
+  import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
+  import { storeToRefs } from 'pinia';
+  const store = useAccessOptionsStore();
+  const { hiContrastOn } = storeToRefs(store);
+</script>
 <template>
-  <div id="footer">
-    <p>&copy; 2022 S. Kyle McKenzie</p>
+  <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
+    <p>&copy;? 2022 S. Kyle McKenzie</p>
   </div>
 </template>
 
@@ -8,11 +14,6 @@
 #footer {
   display: flex;
   justify-content: center;
-  border-top: 5px #2c3e50 solid;
-  background-color: crimson;
 }
 
-#footer p {
-  color: white;
-}
 </style>
