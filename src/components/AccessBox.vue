@@ -8,16 +8,15 @@
 </script>
 
 <template>
-  <div class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-    <button @click.stop="toggleShowAccessOptionsOn()">Click for Accessibility Options </button>
-    <div  v-if="showAccessOptions" id="accessibility" class="colorAlpha">
+  <div id="accessibility" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
+    <button aria-controls="Show accessibility Options" aria-pressed="false" @click.stop="toggleShowAccessOptionsOn()">Click for Accessibility Options </button>
+    <div  v-if="showAccessOptions" id="accessoptions" class="colorAlpha">
       <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast Mode</button>
     </div>
   </div>
 </template>
 <style>
 #accessibility {
-  display: flex;
-  justify-content: flex-start;
+  width: 100%;
 }
 </style>

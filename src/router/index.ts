@@ -24,14 +24,14 @@ const router = createRouter({
       component: BetaView,
     },
     {
-      path: "/deltaview",
-      name: "deltaview",
-      component: DeltaView,
-    },
-    {
       path: "/gammaview",
       name: "gammaview",
       component: GammaView,
+    },    
+    {
+      path: "/deltaview",
+      name: "deltaview",
+      component: DeltaView,
     },
   ]
 })

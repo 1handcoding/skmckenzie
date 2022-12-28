@@ -1,32 +1,7 @@
 <template>
-  <div id="main">
-    <h2 role="heading" aria-level="2">Colors</h2>
-    <div class="color-div">
-      <div class="color-panel thundergray">
-        <p class="color-label">Thundercloud Gray</p>
-        <p class="color-hex">#494f46</p>
-      </div>
-      <div class="color-panel purple">
-        <p class="color-label">Purple</p>
-        <p class="color-hex">#800080</p>
-      </div>
-      <div class="color-panel pthaloblue">
-        <p class="color-label">Pthalo Blue</p>
-        <p class="color-hex">#000f89</p>
-      </div>
-      <div class="color-panel eightiespink">
-        <p class="color-label">80s Pink</p>
-        <p class="color-hex">#F55397</p>
-      </div>
-      <div class="color-panel eightiesblue">
-        <p class="color-label">80s Blue</p>
-        <p class="color-hex">#00abbf</p>
-      </div>
-      <div class="color-panel whitesmoke">
-        <p class="color-label">White Smoke</p>
-        <p class="color-hex">#f5f5f5</p>
-      </div>
-    </div>
+    <div class="maincontent" role="tabpanel" id="maincontent" aria-labelledby="GammaPanel">
+    <h2 role="heading" aria-level="2">Gamma</h2>
+
     <img src="https://placekitten.com/600/150" />
   </div>
 </template>

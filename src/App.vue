@@ -3,10 +3,8 @@ import AccessBox from "@/components/AccessBox.vue";
 import AppHeader from "@/components/AppHeader.vue";
 import NavBar from "@/components/NavBar.vue";
 import FooterBox from "@/components/FooterBox.vue";
-import { useHiContrastStore } from "./stores/hiContrastStore";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const hiContrastStore = useHiContrastStore();
+
 </script>
 
 <template>
@@ -20,33 +18,32 @@ const hiContrastStore = useHiContrastStore();
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, Arial, sans-serif;
   font-weight: 600;
 
 }
-body {
+#masterbox {
+  min-width: 100vw;
   text-align: center;
   width: 100%;
   height: 100%;
-  background-color:#660330;
-  background-color: palevioletred;
+  background-color:whitesmoke;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-
 }
+
 .colorPositive {
   color: #660330;
-  background-color: #FEFBCF;
+  background-color: #CDFFFE;
   border-color: #660330;
 }
 .colorNegative {
-  color:#FEFBCF;
+  color:#CDFFFE;
   background-color: #660330;
-  border-color: #FEFBCF;
+  border-color: #CDFFFE;
 }
 .hcmPositive {
   color: black;
@@ -62,4 +59,13 @@ body {
 [role="heading"] {
     justify-self: center;
   }
+
+  #contentbox {
+  border: solid 5px;
+  width: 95%;
+  border-radius: 1em;
+  justify-content: center;
+  display: flex;
+  flex-flow: column wrap;
+}
 </style>

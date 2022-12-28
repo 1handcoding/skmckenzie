@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+    <div class="maincontent" role="tabpanel" id="maincontent" aria-labelledby="DeltaPanel">
     <h2 role="heading" aria-level="2">Delta</h2>
     <img src="https://placekitten.com/600/285" />
     <br />

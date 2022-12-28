@@ -1,35 +1,83 @@
 <script setup lang="ts">
   import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
   import { storeToRefs } from 'pinia';
+  import { useTitle, set } from '@vueuse/core';
+  import { ref } from 'vue';
+
   const store = useAccessOptionsStore();
   const { hiContrastOn } = storeToRefs(store);
+  const focusedPanel = ref('maincontent');
+  console.log(focusedPanel.value);
+  const tabpanel = focusedPanel.value;
+
+  function setFocusedPanel(panelID: string) {
+    set (focusedPanel, panelID)
+    console.log(focusedPanel.value)
+  }
+  
+  function updateTitle(subpage: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const title = useTitle(subpage, { titleTemplate: '%s | Accessibility w/Vue' })
+  }
 </script>
 
 <template>
-    <div id="navbar" role="tablist" aria-labelledby="navigation" class="manual">
-      <button id="main" type="button" class="colorPositive" :class="{hcmPositive: hiContrastOn}" role="tab" aria-selected="false" aria-controls="main-view" @click="$router.push('alphaview')">
-        <span id="homeTab" class="focus">Alpha</span>
+    <div id="navigation" role="tablist" aria-labelledby="navigation" class="manual">
+      <button 
+        id="main" 
+        type="button" 
+        ref="tab1" class="colorPositive focus" 
+        :class="{hcmPositive: hiContrastOn}" 
+        role="tab" aria-selected="false" 
+        aria-controls="panel-1" 
+        aria-setsize=”4″ aria-posinset=”1″ 
+        @click="updateTitle('Alpha'); $router.push('alphaview'); setFocusedPanel('alphaview')">
+        Alpha
       </button>
 
-      <button id="tab-2" type="button" class="colorPositive" :class="{hcmPositive: hiContrastOn}" role="tab" aria-selected="false" aria-controls="panel-2" @click="$router.push('betaview')">
-        <span class="focus">Beta</span>
+      <button id="tab-2" 
+        type="button" class="colorPositive" 
+        :class="{hcmPositive: hiContrastOn}" 
+        role="tab" aria-selected="false" 
+        aria-controls="panel-2" 
+        aria-setsize=”4″ aria-posinset=”2″ 
+        @click="updateTitle('Beta'); $router.push('betaview'); setFocusedPanel('betaview')">
+        Beta
       </button>
 
-      <button id="tab-3" type="button" class="colorPositive" :class="{hcmPositive: hiContrastOn}" role="tab" aria-selected="false" aria-controls="panel-3" @click="$router.push('deltaview')">
+      <button 
+        id="tab-3" 
+        type="button" 
+        class="colorPositive" 
+        :class="{hcmPositive: hiContrastOn}" 
+        role="tab" aria-selected="false" 
+        aria-controls="panel-3" 
+        aria-setsize=”4″ 
+        aria-posinset=”3″ 
+        @click="updateTitle('Gamma'); $router.push('gammaview'); setFocusedPanel('gammaview')">
         <span class="focus">Gamma</span>
       </button>
 
-      <button id="tab-4" type="button" class="colorPositive" :class="{hcmPositive: hiContrastOn}" role="tab" aria-selected="false" aria-controls="panel-4" @click="$router.push('gammaview')">
+      <button 
+        id="tab-4" 
+        type="button" 
+        class="colorPositive" 
+        :class="{hcmPositive: hiContrastOn}" 
+        role="tab" aria-selected="false" 
+        aria-controls="panel-4" 
+        aria-setsize=”4″ 
+        aria-posinset=”4″ 
+        @click="updateTitle('Delta'); $router.push('deltaview'); setFocusedPanel('deltaview')">
         <span class="focus">Delta</span>
       </button>
     </div>
-  <div id="maincontent" class="colorPositive" :class="{hcmPositive: hiContrastOn}">
+  <div id="contentbox" class="colorPositive" :class="{hcmPositive: hiContrastOn}">
     <router-view />
   </div>
 </template>
 
 <style>
-#navbar {
+#navigation {
   display: inline-flex;
   align-content: center;
   justify-content: space-between;
@@ -38,14 +86,13 @@
   flex-shrink: 0;
   flex-flow: row wrap;
   list-style-type: none;
-  width: 85%;
+  width: 90%;
   margin-top: 1.8rem;
-  border: 1px solid purple;
+  margin-bottom: -3.5px;
+  z-index: 0;
 }
 
 [role="tab"]{
-  background-color: #fff;
-  font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: 18px;
   text-align: center;
@@ -84,17 +131,9 @@ a:hover {
   text-decoration: none;
 }
 
-button:active {
+button:pressed {
   border-bottom: none;
   text-decoration: underline;
 }
 
-#maincontent {
-  border: solid 5px;
-  width: 100%;
-  border-radius: 1em;
-  justify-content: center;
-  display: flex;
-  flex-flow: column wrap;
-}
 </style>

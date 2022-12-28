@@ -13,12 +13,14 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.7.0",
+    "jQuery": "^1.7.4",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
+    "@types/jquery": "^3.5.14",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
     "@vitejs/plugin-vue": "^4.0.0",
@@ -32,7 +34,7 @@
     "npm-run-all": "^4.1.5",
     "typescript": "~4.7.4",
     "vite": "^4.0.1",
-    "vitest": "^0.25.6",
+    "vitest": "^0.25.8",
     "vue-tsc": "^1.0.12"
   }
 }
