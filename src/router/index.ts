@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AlphaView from "../views/AlphaView.vue";
-import BetaView from "../views/BetaView.vue";
-import DeltaView from "../views/DeltaView.vue";
-import GammaView from "../views/GammaView.vue";
+import HomeView from "../views/HomeView.vue";
+import MethodView from "../views/MethodView.vue";
+import AboutView from "../views/AboutView.vue";
+import ReportView from "../views/ReportView.vue";
 
 
 const router = createRouter({
@@ -11,27 +11,27 @@ const router = createRouter({
     {
       path: "/",
       name: "default",
-      component: AlphaView,
+      component: HomeView,
     },
     {
-      path: "/alphaview",
-      name: "alphaview",
-      component: AlphaView,
+      path: "/Home",
+      name: "Home",
+      component: HomeView,
     },
     {
-      path: "/betaview",
-      name: "betaview",
-      component: BetaView,
+      path: "/Methods",
+      name: "Methods",
+      component: MethodView,
     },
     {
-      path: "/gammaview",
-      name: "gammaview",
-      component: GammaView,
+      path: "/About",
+      name: "About",
+      component: AboutView,
     },    
     {
-      path: "/deltaview",
-      name: "deltaview",
-      component: DeltaView,
+      path: "/Reports",
+      name: "Reports",
+      component: ReportView,
     },
   ]
 })
