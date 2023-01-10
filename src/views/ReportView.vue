@@ -1,8 +1,32 @@
 <template>
-    <div class="maincontent" role="tabpanel" id="maincontent" aria-labelledby="GammaPanel">
-    <h2 role="heading" aria-level="2">Gamma</h2>
+    <div class="maincontent" role="tabpanel" id="maincontent" aria-labelledby="Reports">
+    <h2 role="heading" aria-level="2">Latest Reports</h2>
+    <p>Results by messages
+Get help fixing these errors External link
 
-    <img src="https://placekitten.com/600/150" />
+1  Error(s)Bad ARIA attribute
+(badAriaAttribute)
+
+1  Error(s)No aria-level on role="heading"
+(noAriaLevelOnRoleHeading)
+
+1  Alert(s)aria-hidden used
+(ARIAHiddenUsed)
+
+1  Alert(s)H1 in header
+(h1InHeader)
+
+6  Alert(s)Missing ID
+(missingId)
+
+1  Alert(s)No nav landmark
+(noNavLandmark)
+
+1  Alert(s)No bypass available
+(noBypassAvailable)
+
+3  Best Practice(s)Links target does not exist
+(targetLinkDoesNotExist)</p>
   </div>
 </template>
 <style>

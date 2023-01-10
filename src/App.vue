@@ -11,7 +11,7 @@ import FooterBox from "@/components/FooterBox.vue";
   <div id="masterbox">
     <access-box />
     <app-header />
-    <nav-bar />
+    <nav-bar role="nav"/>
     <footer-box />
   </div>
 </template>
@@ -33,6 +33,13 @@ import FooterBox from "@/components/FooterBox.vue";
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+}
+
+.button {
+  min-width: 48px;
+  min-height: 48px;
+  margin: 5px;
+  border-radius: 0.5rem;
 }
 
 .colorPositive {

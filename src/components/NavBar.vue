@@ -8,6 +8,7 @@
   const { hiContrastOn } = storeToRefs(store);
   const focusedPanel = ref('maincontent');
   console.log(focusedPanel.value);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const tabpanel = focusedPanel.value;
 
   function setFocusedPanel(panelID: string) {
@@ -17,32 +18,32 @@
   
   function updateTitle(subpage: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const title = useTitle(subpage, { titleTemplate: '%s | Accessibility w/Vue' })
+    const title = useTitle(subpage, { titleTemplate: '%s | S. Kyle McKenzie' })
   }
 </script>
 
 <template>
     <div id="navigation" role="tablist" aria-labelledby="navigation" class="manual">
       <button 
-        id="main" 
+        id="tab-1-home" 
         type="button" 
         ref="tab1" class="colorPositive focus" 
         :class="{hcmPositive: hiContrastOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-1" 
         aria-setsize=”4″ aria-posinset=”1″ 
-        @click="updateTitle('Alpha'); $router.push('alphaview'); setFocusedPanel('alphaview')">
-        Alpha
+        @click="updateTitle('Home'); $router.push('Home'); setFocusedPanel('alphaview')">
+        Home 
       </button>
 
-      <button id="tab-2" 
+      <button id="tab-2-about" 
         type="button" class="colorPositive" 
         :class="{hcmPositive: hiContrastOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-2" 
         aria-setsize=”4″ aria-posinset=”2″ 
-        @click="updateTitle('Beta'); $router.push('betaview'); setFocusedPanel('betaview')">
-        Beta
+        @click="updateTitle('About'); $router.push('About'); setFocusedPanel('about')">
+        About
       </button>
 
       <button 
@@ -54,8 +55,8 @@
         aria-controls="panel-3" 
         aria-setsize=”4″ 
         aria-posinset=”3″ 
-        @click="updateTitle('Gamma'); $router.push('gammaview'); setFocusedPanel('gammaview')">
-        <span class="focus">Gamma</span>
+        @click="updateTitle('Methods'); $router.push('Methods'); setFocusedPanel('Methods')">
+        <span class="focus">Methods</span>
       </button>
 
       <button 
@@ -67,8 +68,8 @@
         aria-controls="panel-4" 
         aria-setsize=”4″ 
         aria-posinset=”4″ 
-        @click="updateTitle('Delta'); $router.push('deltaview'); setFocusedPanel('deltaview')">
-        <span class="focus">Delta</span>
+        @click="updateTitle('Reports'); $router.push('Reports'); setFocusedPanel('Reports')">
+        <span class="focus">Reports</span>
       </button>
     </div>
   <div id="contentbox" class="colorPositive" :class="{hcmPositive: hiContrastOn}">
@@ -120,20 +121,23 @@
   font-size: 48px;
 }
 
-button:hover {
+#navigation>button:hover {
   transition: 0.5s;
   text-decoration: none;
   box-shadow: 1px;
   border-bottom: none;
 }
 
-a:hover {
+.tab>a:hover {
   text-decoration: none;
 }
 
-button:pressed {
+.tab:active {
   border-bottom: none;
   text-decoration: underline;
 }
 
+#contentbox {
+  margin-bottom: 1rem;
+}
 </style>
