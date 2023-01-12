@@ -1,13 +1,18 @@
 <!-- eslint-disable vue/no-useless-template-attributes -->
 <script setup lang="ts">
-
+import { ref } from "vue"
+import data from "@/data/methods.js"
+const methods = ref(data)
 </script>
 
 <template>
 <h2 aria-level="2">Methods</h2>
 <h2 aria-level="2">Current</h2>
-
-<h3 aria-level="3">Conditional Rendering</h3>
+<div v-for="method in methods" :key="method.name" class="card">
+  <h3 aria-level="3">{{method.name}}</h3>
+  <p>{{method.rationale}}</p>
+</div>
+<!--<h3 aria-level="3">Conditional Rendering</h3>
 <p>Conditional rendering can be used to toggle visibility. Here it is employed to initially hide advanced accessibility features. This allows accessibility options to be anchored at the top of the page, where they are easy to locate, without obstructing the page flow for users who don't want or need them</p>
 
 <h3 aria-level="3">Dynamic Classes</h3>
@@ -21,7 +26,7 @@ Being able to alternate between one or more options for an element helps the sit
 <p>Currently the page utilizes Vue Router to approximate the ARIA <a href="https://www.w3.org/WAI/ARIA/apg/example-index/tabs/tabs-manual.html">tablist format</a>. 
   While this allows the page to present in a familiar format, I'm currently evaluating whether or not this could be better accomplished using a combination of dynamic classes and conditional rendering. 
   The page as is cannot properly manage focus or accommodate the recommended bypass links.
-</p>
+</p>-->
 
 <h2 aria-level="2">Planned</h2>
 

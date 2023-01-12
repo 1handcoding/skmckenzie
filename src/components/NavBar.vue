@@ -5,7 +5,7 @@
   import { ref } from 'vue';
 
   const store = useAccessOptionsStore();
-  const { hiContrastOn } = storeToRefs(store);
+  const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
   const focusedPanel = ref('maincontent');
   console.log(focusedPanel.value);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,8 +27,9 @@
       <button 
         id="tab-1-home" 
         type="button" 
-        ref="tab1" class="colorPositive focus" 
-        :class="{hcmPositive: hiContrastOn}" 
+        ref="tab1" 
+        class="colorPositive focus" 
+        :class="{ hcmPositive: hiContrastOn, bigButton: bigButtonsOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-1" 
         aria-setsize=”4″ aria-posinset=”1″ 
@@ -37,8 +38,9 @@
       </button>
 
       <button id="tab-2-about" 
-        type="button" class="colorPositive" 
-        :class="{hcmPositive: hiContrastOn}" 
+        type="button" 
+        class="colorPositive" 
+        :class="{hcmPositive: hiContrastOn, bigButton: bigButtonsOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-2" 
         aria-setsize=”4″ aria-posinset=”2″ 
@@ -50,7 +52,7 @@
         id="tab-3" 
         type="button" 
         class="colorPositive" 
-        :class="{hcmPositive: hiContrastOn}" 
+        :class="{hcmPositive: hiContrastOn, bigButton: bigButtonsOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-3" 
         aria-setsize=”4″ 
@@ -63,7 +65,7 @@
         id="tab-4" 
         type="button" 
         class="colorPositive" 
-        :class="{hcmPositive: hiContrastOn}" 
+        :class="{hcmPositive: hiContrastOn, bigButton: bigButtonsOn}" 
         role="tab" aria-selected="false" 
         aria-controls="panel-4" 
         aria-setsize=”4″ 

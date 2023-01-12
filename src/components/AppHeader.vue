@@ -26,5 +26,5 @@
     align-self: center;
     margin: auto auto;
   }
- 
+
 </style>

@@ -1,10 +1,5 @@
 <template>
-  <FancyList>
-    <template #item="{ id, username, likes }">
-      <div class="item">
-        <p>{{ id}}</p>
-        <p>by {{ username }} | {{ likes }} likes</p>
-      </div>
-    </template>
-  </FancyList>
+  <div class="maincontent" role="tabpanel" id="maincontent" aria-labelledby="AlphaPanel">
+    <h2 role="heading" aria-level="2">About</h2>
+  </div>
 </template>

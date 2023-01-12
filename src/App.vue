@@ -36,6 +36,12 @@ import FooterBox from "@/components/FooterBox.vue";
 }
 
 .button {
+  min-width: 24px;
+  min-height: 24px;
+  margin: 5px;
+  border-radius: 0.5rem;
+}
+.bigButton {
   min-width: 48px;
   min-height: 48px;
   margin: 5px;
@@ -74,5 +80,10 @@ import FooterBox from "@/components/FooterBox.vue";
   justify-content: center;
   display: flex;
   flex-flow: column wrap;
+}
+
+h3{
+  text-decoration: underline;
+
 }
 </style>

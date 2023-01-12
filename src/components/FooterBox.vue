@@ -6,7 +6,7 @@
 </script>
 <template>
   <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-    <p>&copy;? 2022 S. Kyle McKenzie</p>
+    <p>2022 S. Kyle McKenzie | Contact: </p>
   </div>
 </template>
 
