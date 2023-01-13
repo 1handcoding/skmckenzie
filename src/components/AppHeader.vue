@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
-  import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia';
   const store = useAccessOptionsStore();
   const { hiContrastOn } = storeToRefs(store);
+
 </script>
 <template>
   <a class="bypass" href="#maincontent">Skip to main content</a>

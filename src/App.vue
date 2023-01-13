@@ -4,7 +4,6 @@ import AppHeader from "@/components/AppHeader.vue";
 import NavBar from "@/components/NavBar.vue";
 import FooterBox from "@/components/FooterBox.vue";
 
-
 </script>
 
 <template>

@@ -1,18 +1,17 @@
 <!-- eslint-disable vue/no-useless-template-attributes -->
 <script setup lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ref } from "vue"
-import data from "@/data/methods.js"
-const methods = ref(data)
 </script>
 
 <template>
 <h2 aria-level="2">Methods</h2>
 <h2 aria-level="2">Current</h2>
-<div v-for="method in methods" :key="method.name" class="card">
+<!--<div v-for="method in methods" :key="method.name" class="card">
   <h3 aria-level="3">{{method.name}}</h3>
   <p>{{method.rationale}}</p>
-</div>
-<!--<h3 aria-level="3">Conditional Rendering</h3>
+</div>-->
+<h3 aria-level="3">Conditional Rendering</h3>
 <p>Conditional rendering can be used to toggle visibility. Here it is employed to initially hide advanced accessibility features. This allows accessibility options to be anchored at the top of the page, where they are easy to locate, without obstructing the page flow for users who don't want or need them</p>
 
 <h3 aria-level="3">Dynamic Classes</h3>
@@ -23,17 +22,28 @@ Being able to alternate between one or more options for an element helps the sit
 
 <h3 aria-level="3">useTitle from vueUse</h3>
 <p>While vueUse provides a tremendous number of useful functions, the site currently uses only useTitle. The title is dynamically updated with the name of the current tab panel.</p>
+
+<h3 aria-level="3">Vue Router</h3>
 <p>Currently the page utilizes Vue Router to approximate the ARIA <a href="https://www.w3.org/WAI/ARIA/apg/example-index/tabs/tabs-manual.html">tablist format</a>. 
   While this allows the page to present in a familiar format, I'm currently evaluating whether or not this could be better accomplished using a combination of dynamic classes and conditional rendering. 
   The page as is cannot properly manage focus or accommodate the recommended bypass links.
-</p>-->
+</p>
+
+<h3 aria-level="3">Auto-Derived Values from Browser</h3>
+<p>Various values and preferences are accessed using a variety of vueuse components. These can then be accessed from their own Pinia store and used to inform custom styling preferences throughout the site</p>
+<ul>Currently Implemented, Styling Pending</ul>
+<li>useDevicePixelRatio is be used to respond to user zoom level and screen-enlargement</li>
+<li>useDeviceOrientation can be used to better style the page based on the device orientation.
+  While almost universally helpful to users, this is especially beneficial to some disabled users.
+  To maximize the benefit, this can, in theory, then be configured to work in conjunction with other settings</li>
 
 <h2 aria-level="2">Planned</h2>
 
 <ul>
-  <li>Add dynamic button classes</li>
+  <li>Expand custom color styling to cycle through color modes and auto-load based on color preferences set in browser</li>
+  <li>Test modifying custom button classes automatically in response to zoom level, device orientation</li>
   <li>Use vueUse to add accessible alerts/audio feedback</li>
-  <li>Make methods page to display only one set of methods at a time</li>
+  <li>Make methods page to display only one set of methods at a time, nested router?</li>
   <li>Create usable functions to manage focus and ARIA pressed state</li>
   <li>Rectify all the ARIA labels, preferably by using dynamic HTML attributes</li>
   <li>Add CSS styling for all the new content</li>
@@ -45,4 +55,8 @@ Being able to alternate between one or more options for an element helps the sit
 p { width: 90%;
     font-size: 1.5rem;
     }
+#card {
+  background-color: WHITESMOKE;
+  border-radius: 0.5rem;
+}
 </style>
