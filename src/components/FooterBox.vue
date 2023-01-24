@@ -6,7 +6,8 @@
 </script>
 <template>
   <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-    <p>2022 S. Kyle McKenzie | Contact: </p>
+    <p>2022 S. Kyle McKenzie | onehandcoding@gmail.com | <a rel="me" href="
+https://fosstodon.org/@onehandcoding">@onehandcoding@fosstodon.org</a></p>
   </div>
 </template>
 

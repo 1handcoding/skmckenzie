@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AccessBox from "@/components/AccessBox.vue";
+import AccessBar from "@/components/AccessBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
 import NavBar from "@/components/NavBar.vue";
 import FooterBox from "@/components/FooterBox.vue";
@@ -8,7 +8,7 @@ import FooterBox from "@/components/FooterBox.vue";
 
 <template>
   <div id="masterbox">
-    <access-box />
+    <access-bar />
     <app-header />
     <nav-bar role="nav"/>
     <footer-box />

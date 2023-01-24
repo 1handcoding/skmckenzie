@@ -10,14 +10,12 @@
 <template>
   <div id="accessibility" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
     <div id='topbuttons'>
-      <button class="button" :class="{bigButton: bigButtonsOn}" aria-controls="Show accessibility Options" aria-pressed="false" @click.stop="toggleShowAccessOptionsOn()">Click for Accessibility Options </button>
-      <a href="#maincontent">
-        <button class="button" :class="{bigButton: bigButtonsOn}" aria-controls="Skip to main" aria-pressed="false" href="#maincontent">Skip to Main Content</button>
-      </a>
+      <button class="button" :class="{bigButton: bigButtonsOn}" aria-controls="Show accessibility Options" :aria-pressed="showAccessOptions" @click.stop="toggleShowAccessOptionsOn()">Click for Accessibility Options </button>
+      <a href="#maincontent" class="button" :class="{bigButton: bigButtonsOn}" aria-controls="Skip to main">Skip to Main Content</a>
     </div>
    <div v-if="showAccessOptions" id="accessoptions" class="colorBeta">
-      <span>Hi-Contrast Enabled:{{hiContrastOn}}</span><button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast Mode</button>
-      <span>Enlarged Buttons:{{bigButtonsOn}}</span><button @click.stop="toggleBigButtonsOn()">Toggle Big Buttons</button>
+    <button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast</button><div id="toggle" class="toggleoff" :class="{toggleon: hiContrastOn}"></div>
+    <button @click.stop="toggleBigButtonsOn()">Toggle Big Buttons</button><div id="toggle" class="toggleoff" :class="{toggleon: bigButtonsOn}"></div>
     </div>
   
   </div>
@@ -42,5 +40,14 @@
   display: flex;
   flex-direction: row;
   float: start;
+}
+#toggle {
+border-radius: 0.e5em;
+width: 1.5em}
+.toggleoff {
+  background-color: gray;
+}
+.toggleon {
+  background-color: #660330;
 }
 </style>
