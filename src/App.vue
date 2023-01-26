@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AccessBar from "@/components/AccessBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
-import NavBar from "@/components/NavBar.vue";
+import MainContent from "@/components/MainContent.vue";
 import FooterBox from "@/components/FooterBox.vue";
 
 </script>
@@ -10,12 +10,14 @@ import FooterBox from "@/components/FooterBox.vue";
   <div id="masterbox">
     <access-bar />
     <app-header />
-    <nav-bar role="nav"/>
+    <main-content />
     <footer-box />
   </div>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -83,6 +85,14 @@ import FooterBox from "@/components/FooterBox.vue";
 
 h3{
   text-decoration: underline;
+}
 
+#secBar{
+  min-width: 85%;
+  border: solid 5px;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-self: center;
+  text-align: center;
 }
 </style>

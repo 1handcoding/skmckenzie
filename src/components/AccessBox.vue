@@ -17,7 +17,6 @@
     <button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast</button><div id="toggle" class="toggleoff" :class="{toggleon: hiContrastOn}"></div>
     <button @click.stop="toggleBigButtonsOn()">Toggle Big Buttons</button><div id="toggle" class="toggleoff" :class="{toggleon: bigButtonsOn}"></div>
     </div>
-  
   </div>
 </template>
 <style>
@@ -44,6 +43,7 @@
 #toggle {
 border-radius: 0.e5em;
 width: 1.5em}
+
 .toggleoff {
   background-color: gray;
 }

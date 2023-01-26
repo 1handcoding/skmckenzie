@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useAccessOptionsStore } from '@/stores/accessOptionsStore';
 import { ref } from 'vue';
-  import { storeToRefs } from 'pinia';
-  const store = useAccessOptionsStore();
-  const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
+import { storeToRefs } from 'pinia';
+const store = useAccessOptionsStore();
+const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
 const { toggleHiContrastOn, toggleBigButtonsOn } = store;
 const bypassOpen = ref(false)
 const showAccess = ref(false)
@@ -20,23 +20,23 @@ function accessOptions() {
 <template>
   <div>
     <ul id="menubar" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-        <li><button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
-            <ul id="id_bypass_links" v-if="bypassOpen">
-                <li>
-                    <a href="#mythical-page-content">Overview</a>
-                </li>
-                <li>
-                    <a href="#mythical-page-content">Administration</a>
-                </li>
-                <li>
-                    <a href="#mythical-page-content">Facts</a>
-                </li>
-                <li>
-                    <a href="#mythical-page-content">Campus Tours</a>
-                </li>
+        <ul><button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
+            <ul id="id_bypass_links" class="colorPositive" :class="{hcmPositive: hiContrastOn}" v-if="bypassOpen">
+                <ul>
+                    <a href="homeSection">Home</a>
+                </ul>
+                <ul>
+                    <a href="aboutSection">About</a>
+                </ul>
+                <ul>
+                    <a href="methodsSection">About</a>
+                </ul>
+                <ul>
+                    <a href="nextSection">Next Steps</a>
+                </ul>
             </ul>
-        </li>
-        <li><button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
+          </ul>
+        <ul><button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
                 <ul id="id_about_menu" v-if="showAccess">
                     <li>
                         <button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast</button><div id="toggle" class="toggleoff" :class="{toggleon: hiContrastOn}"></div>
@@ -45,7 +45,7 @@ function accessOptions() {
                         <button @click.stop="toggleBigButtonsOn()">Toggle Big Buttons</button><div id="toggle" class="toggleoff" :class="{toggleon: bigButtonsOn}"></div>
                     </li>
                 </ul>
-        </li>
+              </ul>
     </ul>
   </div>
 </template>
