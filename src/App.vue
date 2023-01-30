@@ -26,14 +26,15 @@ import FooterBox from "@/components/FooterBox.vue";
 
 }
 #masterbox {
-  min-width: 100vw;
+  min-width: 100%;
   text-align: center;
-  width: 100%;
   height: 100%;
   background-color:whitesmoke;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  border: 5px solid blue ;
+  margin: 0 0;
 }
 
 .button {

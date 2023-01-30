@@ -12,7 +12,7 @@ function toggleBypass() {
   bypassOpen.value = !bypassOpen.value
 }
 function accessOptions() {
-  showAccess.value = !showAccess.value
+  showAccess.value = !showAccess.value;
 }
 
 </script>
@@ -29,7 +29,7 @@ function accessOptions() {
                     <a href="aboutSection">About</a>
                 </ul>
                 <ul>
-                    <a href="methodsSection">About</a>
+                    <a href="methodsSection">Methods</a>
                 </ul>
                 <ul>
                     <a href="nextSection">Next Steps</a>
@@ -51,7 +51,7 @@ function accessOptions() {
 </template>
 <style>
 #menubar {
-  width: 100%;
+  min-width: 100%;
   display: inline-flex;
   justify-content: space-around;
 }

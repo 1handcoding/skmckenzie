@@ -6,7 +6,7 @@
 </script>
 <template>
   <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-    <p>2022 S. Kyle McKenzie | onehandcoding@gmail.com | <a rel="me" href="
+    <p>2022 S. Kyle McKenzie | <a href="mailto:email@example.com">onehandcoding@gmail.com</a> | <a rel="me" href="
 https://fosstodon.org/@onehandcoding">@onehandcoding@fosstodon.org</a></p>
   </div>
 </template>

@@ -1,10 +1,12 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
 import { storeToRefs } from 'pinia';
-
+import ariaButton from '@/components/ariaButton.vue'
 const store = useAccessOptionsStore();
 const { hiContrastOn } = storeToRefs(store);
+
 let expIcon = "expand_more";
 let expIcon2 = "expand_more";
 let expIcon3 = "expand_more";
@@ -14,8 +16,11 @@ let showAbout = ref(false);
 let showMethods = ref(false);
 let showNext = ref(false);
 
+const url= "url"
+
 function toggleHome() { 
   showHome.value = !showHome.value;
+  document.getElementById("homeSection")!.focus();
   if (showHome.value) {
     expIcon="expand_less"
   }
@@ -50,13 +55,21 @@ function toggleNext() {
     expIcon2="expand_more"
   }
 }
-
+function toggleExpand(nameExp: string, showProp: boolean) {
+  if (nameExp) {
+    expIcon2="expand_less"
+  }
+  else {
+    expIcon2="expand_more"
+  }
+}
 </script>
 <template>
+  
   <div class="expandyBox">
-    <div class="secBar; colorNegative" :class="{ hcmNegative: hiContrastOn }"><h2 id="homeSection">Home</h2><span></span><button type="button" :aria-expanded="showHome" aria-controls="show_home" class="secButton"
-          @click.stop="toggleHome()">Home<span class="material-symbols-rounded">{{expIcon}}</span>
-          </button>
+    <div class="secBar; colorNegative" :class="{ hcmNegative: hiContrastOn }">
+      <h2 id="homeSection" ref="homeSection">Home</h2>
+      <ariaButton name="Home" id="homeButton" @click.stop="toggleHome()"/><span class="material-symbols-rounded">{{ expIcon }}</span>
     </div>
     <div v-show="showHome" class="secAnchor; colorPositive" :class="{ hcmPositive: hiContrastOn }">
       <p>Welcome to my accessibility demonstration</p>
@@ -65,7 +78,7 @@ function toggleNext() {
   <div class="expandyBox">
     <div class="colorNegative" :class="{ hcmNegative: hiContrastOn }">
       <h2 id="aboutSection">About</h2>
-      <button type="button" :aria-expanded="showAbout" aria-controls="show_about" class="secButton"
+      <button type="button" :aria-expanded="`${showAbout}`" aria-controls="show_about" class="secButton"
           @click.stop="toggleAbout()">About<span class="material-symbols-rounded">{{ expIcon2 }}</span>
           </button>
     </div>
@@ -75,8 +88,11 @@ function toggleNext() {
     </div>
   </div>
   <div class="expandyBox">
-    <div><button type="button" :aria-expanded="showMethods" aria-controls="show_methods" class="secButton" @click.stop="toggleMethods()">Methods<span class="material-symbols-rounded">{{expIcon3}}</span>
-          </button>
+    <div>
+      <button type="button" :aria-expanded="`${showMethods}`" aria-controls="show_methods" class="secButton" @click.stop="toggleMethods()">
+        Methods
+        <span class="material-symbols-rounded">{{expIcon3}}</span>
+      </button>
     </div>
     <div v-show="showMethods">
       <h2 id="methodsSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">Methods</h2>
@@ -113,9 +129,11 @@ function toggleNext() {
     </div>
   </div>
   <div class="expandyBox">
-    <div><button type="button" :aria-expanded="showNext" aria-controls="show_next_steps" class="secButton"
-          @click.stop="toggleNext()">Next Steps<span class="material-symbols-rounded">{{expIcon4}}</span>
-          </button>
+    <div>
+      <button type="button" :aria-expanded="`${showNext}`" aria-controls="show_next_steps" class="secButton" @click.stop="toggleNext()">
+        Next Steps
+        <span class="material-symbols-rounded">{{expIcon4}}</span>
+      </button>
     </div>
     <div v-show="showNext">
       <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">Next Steps</h2>
