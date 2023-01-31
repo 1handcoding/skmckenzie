@@ -7,6 +7,7 @@ const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
 const { toggleHiContrastOn, toggleBigButtonsOn } = store;
 const bypassOpen = ref(false)
 const showAccess = ref(false)
+const hcmToggle = ref(false)
 
 function toggleBypass() {
   bypassOpen.value = !bypassOpen.value
@@ -39,10 +40,10 @@ function accessOptions() {
         <ul><button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
                 <ul id="id_about_menu" v-if="showAccess">
                     <li>
-                        <button @click.stop="toggleHiContrastOn()">Toggle Hi-Contrast</button><div id="toggle" class="toggleoff" :class="{toggleon: hiContrastOn}"></div>
+                        <button @click.stop="toggleHiContrastOn()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button><div id="toggle" class="toggleoff" :class="{toggleon: hiContrastOn}"></div>
                     </li>
                     <li>
-                        <button @click.stop="toggleBigButtonsOn()">Toggle Big Buttons</button><div id="toggle" class="toggleoff" :class="{toggleon: bigButtonsOn}"></div>
+                        <button @click.stop="toggleBigButtonsOn()" :aria-pressed="`${bigButtonsOn}`">Toggle Big Buttons</button><div id="toggle" class="toggleoff" :class="{toggleon: bigButtonsOn}"></div>
                     </li>
                 </ul>
               </ul>

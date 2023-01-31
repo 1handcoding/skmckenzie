@@ -5,9 +5,9 @@
   const { hiContrastOn } = storeToRefs(store);
 </script>
 <template>
-  <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-    <p>2022 S. Kyle McKenzie | <a href="mailto:email@example.com">onehandcoding@gmail.com</a> | <a rel="me" href="
-https://fosstodon.org/@onehandcoding">@onehandcoding@fosstodon.org</a></p>
+  <div id="footer" class="colorNegative" :class="{hcmNegative: hiContrastOn}" translate="no">
+    <p>2022 S. Kyle McKenzie | <a href="mailto:email@example.com" translate="no">onehandcoding@gmail.com</a> | <a rel="me" href="
+https://fosstodon.org/@onehandcoding" translate="no">@onehandcoding@fosstodon.org</a></p>
   </div>
 </template>
 

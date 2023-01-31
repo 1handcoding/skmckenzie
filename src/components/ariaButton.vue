@@ -3,12 +3,11 @@
 const props = defineProps({
   name: String,
   funct: String,
-  idProp: String,
+  boop: String,
   showProp: Boolean,
 })
 
 </script>
 <template >
-  <button type="button" class="secButton" id="idProp" :aria-pressed=showProp @click.stop="`toggleExpand(${funct}, ${showProp})`">{{ name }}
-  </button>
+  <button type="button" class="secButton colorNegative bigButton" :id=boop :aria-expanded=showProp>{{boop}}</button>
 </template>

@@ -88,12 +88,5 @@ h3{
   text-decoration: underline;
 }
 
-#secBar{
-  min-width: 85%;
-  border: solid 5px;
-  display: inline-flex;
-  flex-flow: row nowrap;
-  justify-self: center;
-  text-align: center;
-}
+
 </style>

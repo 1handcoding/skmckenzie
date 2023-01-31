@@ -67,23 +67,19 @@ function toggleExpand(nameExp: string, showProp: boolean) {
 <template>
   
   <div class="expandyBox">
-    <div class="secBar; colorNegative" :class="{ hcmNegative: hiContrastOn }">
+    <div class="secBar colorNegative" :class="{ hcmNegative: hiContrastOn }">
       <h2 id="homeSection" ref="homeSection">Home</h2>
-      <ariaButton name="Home" id="homeButton" @click.stop="toggleHome()"/><span class="material-symbols-rounded">{{ expIcon }}</span>
+      <ariaButton  idProp="homeButton" @click.stop="toggleHome()"/><span class="material-symbols-rounded">{{ expIcon }}</span>
     </div>
-    <div v-show="showHome" class="secAnchor; colorPositive" :class="{ hcmPositive: hiContrastOn }">
+    <div v-show="showHome" class="secAnchor colorPositive" :class="{ hcmPositive: hiContrastOn }">
       <p>Welcome to my accessibility demonstration</p>
     </div>
   </div>
   <div class="expandyBox">
-    <div class="colorNegative" :class="{ hcmNegative: hiContrastOn }">
-      <h2 id="aboutSection">About</h2>
-      <button type="button" :aria-expanded="`${showAbout}`" aria-controls="show_about" class="secButton"
-          @click.stop="toggleAbout()">About<span class="material-symbols-rounded">{{ expIcon2 }}</span>
-          </button>
+  <div role="button" id="show_about" class="expandyBox" :class="{ hcmNegative: hiContrastOn }" aria-controls="show_about" @click.prevent="toggleAbout()" :aria-expanded="`${showAbout}`" >
+    <ariaButton boop='About Button'></ariaButton>
     </div>
-    <div v-show="showAbout">
-      
+    <div v-show="showAbout" class="dropDown">
       <p>Welcome to my accessibility demonstration</p>
     </div>
   </div>
@@ -151,3 +147,24 @@ function toggleExpand(nameExp: string, showProp: boolean) {
     </div>
   </div>
 </template>
+<style>
+.secBar{
+  min-width: 100%;
+  border: solid 5px;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-self: center;
+  text-align: center;
+}
+
+.secButton {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+}
+</style>
