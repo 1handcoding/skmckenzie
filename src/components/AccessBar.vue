@@ -3,7 +3,7 @@
 import { useAccessOptionsStore } from '@/stores/accessOptionsStore';
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useSpeechSynthesis } from '@vueuse/core'
+import { useSpeechSynthesis } from '@vueuse/core';
 
 
 const store = useAccessOptionsStore();
@@ -56,7 +56,7 @@ function toggleBigButtons() {
 </script>
 
 <template>
-  <div>
+  <div id="topBar">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <ul id="menubar" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
         <ul><button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
@@ -75,43 +75,21 @@ function toggleBigButtons() {
                 </ul>
             </ul>
           </ul>
-        <ul><button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
-                <ul id="id_about_menu" v-if="showAccess">
-                    <li>
-                        <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button><span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
-                    </li>
-                    <li>
-                        <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button><span class="material-symbols-outlined" :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
-                    </li>
-                </ul>
-              </ul>
+        </ul>
+        <ul>
+          <button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
+          <ul id="id_about_menu" v-if="showAccess">
+            <ul>
+              <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button><span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
+            </ul>
+            <ul>
+              <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button><span class="material-symbols-outlined" :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
+            </ul>
+          </ul>
     </ul>
   </div>
 </template>
 <style>
-#menubar {
-  min-width: 100%;
-  display: inline-flex;
-  justify-content: space-around;
-}
-#menubar>.button {
-  background-color: whitesmoke;
-  color: #660330;
-  padding: 3px;
-  font-size: 32;
-}
-#accessoptions {
-  border: 5px solid;
-  display: flex;
-  flex-direction: row;
-  float: start;
-}
-#toggle {
-border-radius: 0.e5em;
-width: 1.5em}
-.toggleoff {
-  background-color: gray;
-}
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -120,8 +98,16 @@ width: 1.5em}
   'GRAD' 0,
   'opsz' 48
 }
+
 .toggleOn {
   font-variation-settings:
   'FILL' 1;
+}
+
+#menubar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+
 }
 </style>

@@ -65,7 +65,6 @@ function toggleExpand(nameExp: string, showProp: boolean) {
 }
 </script>
 <template>
-  
   <div class="expandyBox">
     <div role="button" id="show_home" class="secBar colorNegative" :class="{ hcmNegative: hiContrastOn }" aria-controls="show_home" @click.prevent="toggleHome()" :aria-expanded="`${showHome}`" >
       <h2 id="homeSection" ref="homeSection">Home</h2>
@@ -147,27 +146,14 @@ function toggleExpand(nameExp: string, showProp: boolean) {
     </div>
   </div>
 </template>
-<style>
-.secBar{
-  min-width: 100%;
-  border: solid 5px;
-  display: inline-flex;
-  flex-flow: row nowrap;
-  justify-self: center;
-  text-align: center;
+<style scoped>
+.secBar {
+  width: 95%;
+  margin: 0 auto;
 }
-
-.secButton {
-  background-color: transparent;
-  border-width: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  padding: 0;
-}
-.subheader {
-  text-decoration: underline;
+p {
+  width: 95%;
+  color: #660330;
+  margin: 0 auto;
 }
 </style>

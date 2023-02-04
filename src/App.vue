@@ -8,9 +8,15 @@ import FooterBox from "@/components/FooterBox.vue";
 
 <template>
   <div id="masterbox">
-    <access-bar />
-    <app-header />
-    <main-content />
+    <div id="topper">
+      <access-bar />
+    </div>
+    <div id="bannerBox">
+      <app-header />
+    </div>
+    <div id="mainContent">
+      <main-content />
+    </div>
     <footer-box />
   </div>
 </template>
@@ -23,18 +29,42 @@ import FooterBox from "@/components/FooterBox.vue";
   -moz-osx-font-smoothing: grayscale;
   font-family: Montserrat, Arial, sans-serif;
   font-weight: 600;
-
+  width: 100vw;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
 #masterbox {
-  min-width: 100%;
-  text-align: center;
-  height: 100%;
-  background-color:whitesmoke;
+  position: absolute;
+  top: 0;
+  border: 0.2rem solid fuchsia;
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  border: 5px solid blue ;
-  margin: 0 0;
+  flex-direction: column;
+  width: 100vw;
+}
+
+#topper {
+  width: 100vw;
+  max-height: 56px;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  border: 1rem solid orangered; 
+}
+
+#bannerBox {
+  width: 90%;
+  border: .25rem solid blueviolet;
+  margin: 1.5rem auto;
+}
+
+#mainContent {
+  width: 90%;
+  border: .25rem solid blueviolet;
+  margin: 0 auto;
 }
 
 .button {
@@ -43,6 +73,7 @@ import FooterBox from "@/components/FooterBox.vue";
   margin: 5px;
   border-radius: 0.5rem;
 }
+
 .bigButton {
   min-width: 48px;
   min-height: 48px;
@@ -55,6 +86,7 @@ import FooterBox from "@/components/FooterBox.vue";
   background-color: #CDFFFE;
   border-color: #660330;
 }
+
 .colorNegative {
   color:#CDFFFE;
   background-color: #660330;
@@ -74,19 +106,4 @@ import FooterBox from "@/components/FooterBox.vue";
 [role="heading"] {
     justify-self: center;
   }
-
-  #contentbox {
-  border: solid 5px;
-  width: 95%;
-  border-radius: 1em;
-  justify-content: center;
-  display: flex;
-  flex-flow: column wrap;
-}
-
-h3{
-  text-decoration: underline;
-}
-
-
 </style>
