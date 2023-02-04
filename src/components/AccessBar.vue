@@ -1,15 +1,17 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import { useAccessOptionsStore } from '@/stores/accessOptionsStore';
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSpeechSynthesis } from '@vueuse/core';
+import DropContent from '@/components/DropContent.vue'
+import DropDown from '@/components/DropDown.vue'
+import { provide, ref } from 'vue'
+
 
 
 const store = useAccessOptionsStore();
 const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
 const { toggleHiContrastOn, toggleBigButtonsOn } = store;
-
 
 const bypassOpen = ref(false)
 const showAccess = ref(false)
@@ -58,34 +60,42 @@ function toggleBigButtons() {
 <template>
   <div id="topBar">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <ul id="menubar" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-        <ul><button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
-            <ul id="id_bypass_links" class="colorPositive" :class="{hcmPositive: hiContrastOn}" v-if="bypassOpen">
-                <ul>
-                    <a href="homeSection">Home</a>
-                </ul>
-                <ul>
-                    <a href="aboutSection">About</a>
-                </ul>
-                <ul>
-                    <a href="methodsSection">Methods</a>
-                </ul>
-                <ul>
-                    <a href="nextSection">Next Steps</a>
-                </ul>
-            </ul>
-          </ul>
-        </ul>
-        <ul>
-          <button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
-          <ul id="id_about_menu" v-if="showAccess">
-            <ul>
-              <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button><span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
-            </ul>
-            <ul>
-              <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button><span class="material-symbols-outlined" :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
-            </ul>
-          </ul>
+    <ul id="menubar">
+      <ul>
+          <DropDown>
+            <template #toggler>
+              <button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
+            </template>
+            <DropContent>
+              <template #dropContent>
+                <div id="nav_menu" v-if="bypassOpen " class="dropDown colorPositive">
+                  <li><a href="homeSection">Home</a></li>
+                </div>
+              </template>
+            </DropContent>
+          </DropDown>
+      </ul>
+      <ul>
+        <DropDown>
+          <template #toggler>
+            <button role="switch" type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
+          </template>
+            <DropContent>
+          <template #dropContent>
+            <div id="id_access_menu" v-if="showAccess" class="dropDown colorPositive">
+              <ul>
+                <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button>
+                <span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
+              </ul>
+              <ul>
+                <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button>
+                <span class="material-symbols-outlined"  :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
+              </ul>
+            </div>
+          </template>
+        </DropContent>
+        </DropDown>
+      </ul>
     </ul>
   </div>
 </template>
@@ -105,9 +115,24 @@ function toggleBigButtons() {
 }
 
 #menubar {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
+  width: 100vw;
+  height: 24px;
+  margin-top: 0px;
+  margin-bottom: auto;
+  padding: 3px;
+  display: inline-flex;
+  justify-content: space-around;
+  background-color: #660330;
+  border: 5px solid orange;
+  z-index: 999;
+}
 
+.dropDown {
+  float: inline-start;
+  padding: 4px;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0;
+  background-color: none;
+  z-index: 999;
 }
 </style>

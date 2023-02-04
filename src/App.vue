@@ -38,27 +38,24 @@ import FooterBox from "@/components/FooterBox.vue";
   left: 0;
 }
 
+#topper {
+  z-index: 999
+}
 #masterbox {
   position: absolute;
   top: 0;
+  margin: 0;
   border: 0.2rem solid fuchsia;
   display: flex;
   flex-direction: column;
   width: 100vw;
 }
 
-#topper {
-  width: 100vw;
-  max-height: 56px;
-  margin-bottom: 1.5rem;
-  padding: 0;
-  border: 1rem solid orangered; 
-}
-
 #bannerBox {
   width: 90%;
   border: .25rem solid blueviolet;
   margin: 1.5rem auto;
+  z-index: 0;
 }
 
 #mainContent {
