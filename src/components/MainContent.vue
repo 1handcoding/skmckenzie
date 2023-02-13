@@ -5,8 +5,11 @@ import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
 import { storeToRefs } from 'pinia';
 import { useTitle, set, useMouseInElement, useCurrentElement } from '@vueuse/core';
 import ariaButton from '@/components/ariaButton.vue'
+import expandBox from './expandBox.vue';
+import expandSectionBar from './expandSectionBar.vue';
+import expandSectionBox from './expandSectionBox.vue';
 const store = useAccessOptionsStore();
-const { hiContrastOn } = storeToRefs(store);
+const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
 const targetSection = ref(null)
 
 let expIcon = "expand_more";
@@ -17,10 +20,12 @@ let showHome = ref(false);
 let showAbout = ref(false);
 let showMethods = ref(false);
 let showNext = ref(false);
+const title = useTitle();
 
 function toggleHome() { 
   showHome.value = !showHome.value;
   document.getElementById("homeSection")!.focus();
+  const title = useTitle('Home', { titleTemplate: '%s | Kyle McKenzie' });
   if (showHome.value) {
     expIcon="expand_less"
   }
@@ -30,6 +35,7 @@ function toggleHome() {
 }
 function toggleAbout() { 
   showAbout.value = !showAbout.value;
+  const title = useTitle('About', { titleTemplate: '%s | Kyle McKenzie' });
   if (showAbout.value) {
     expIcon2="expand_less"
   }
@@ -39,6 +45,7 @@ function toggleAbout() {
 }
 function toggleMethods() { 
   showMethods.value = !showMethods.value;
+  const title = useTitle('Methodology', { titleTemplate: '%s | Kyle McKenzie'});
   if (showMethods.value) {
     expIcon3="expand_less"
   }
@@ -48,6 +55,7 @@ function toggleMethods() {
 }
 function toggleNext() { 
   showNext.value = !showNext.value;
+  const title = useTitle('Next Steps', { titleTemplate: '%s | Kyle McKenzie' });
   if (showNext.value) {
     expIcon4="expand_less"
   }
@@ -65,6 +73,14 @@ function toggleExpand(nameExp: string, showProp: boolean) {
 }
 </script>
 <template>
+  <expandBox>
+    <expandSectionBar/>
+
+    <expandSectionBox>
+      <template>
+      </template>
+    </expandSectionBox>
+  </expandBox>
   <div class="expandyBox">
     <div role="button" id="show_home" class="secBar colorNegative" :class="{ hcmNegative: hiContrastOn }" aria-controls="show_home" @click.prevent="toggleHome()" :aria-expanded="`${showHome}`" >
       <h2 id="homeSection" ref="homeSection">Home</h2>
@@ -74,14 +90,17 @@ function toggleExpand(nameExp: string, showProp: boolean) {
       <p>Welcome to my accessibility demonstration</p>
     </div>
   </div>
+
   <div class="expandyBox">
   <div role="button" id="show_about" class="secBar colorNegative" :class="{ hcmNegative: hiContrastOn }" aria-controls="show_about" @click.prevent="toggleAbout()" :aria-expanded="`${showAbout}`" >
-    <ariaButton boop='About Button'></ariaButton>
+    <ariaButton boop='About'></ariaButton>
     </div>
     <div v-show="showAbout" class="dropDown">
       <p>Hi, I'm Kyle McKenzie, and I want to be an accessibility engineer. On this page, I'm experimenting with implementing better accessibility in Vue.js. As the usage of reactive frameworks is rapidly increasing, it is vital that accessibility practices keep pace. Reactive frameworks currently have an appallingly poor reputation for ease of access that must be addressed.</p>
     </div>
   </div>
+
+
   <div ref="methods" class="expandyBox">
     <div>
       <button type="button" :aria-expanded="`${showMethods}`" aria-controls="show_methods" class="secButton" @click.stop="toggleMethods()">
@@ -150,6 +169,7 @@ function toggleExpand(nameExp: string, showProp: boolean) {
 .secBar {
   width: 95%;
   margin: 0 auto;
+  border-radius: 0.5em;
 }
 p {
   width: 95%;
