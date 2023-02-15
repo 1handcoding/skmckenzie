@@ -3,6 +3,13 @@ import AccessBar from "@/components/AccessBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
 import MainContent from "@/components/MainContent.vue";
 import FooterBox from "@/components/FooterBox.vue";
+import { storeToRefs } from 'pinia';
+import { useAutoDerivedStore } from "@/stores/autoDerivedStore";
+import AriaButton from "./components/ariaButton.vue";
+const autoStore = useAutoDerivedStore();
+const pixelRatio = storeToRefs(autoStore)
+const msg ="it works"
+
 
 </script>
 
@@ -14,10 +21,15 @@ import FooterBox from "@/components/FooterBox.vue";
     <div id="bannerBox">
       <app-header />
     </div>
-    <div id="mainContent">
-      <main-content />
-    </div>
-    <footer-box />
+    <AriaButton :message=msg>
+      <template v-slot:propsTest="{ count, addOne }">
+        <p>{{ count }}</p>
+        <button @click="addOne" class="Red">Add One</button>
+      </template>
+      <template v-slot:reset="{reset}">
+        <button @click="reset"></button>
+      </template>
+    </AriaButton>
   </div>
 </template>
 
@@ -28,6 +40,7 @@ import FooterBox from "@/components/FooterBox.vue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Montserrat, Arial, sans-serif;
+  font-size: 16px;
   font-weight: 600;
   width: 100vw;
   height: fit-content;
@@ -45,7 +58,7 @@ import FooterBox from "@/components/FooterBox.vue";
   position: absolute;
   top: 0;
   margin: 0;
-  border: 0.2rem solid fuchsia;
+  border: 0.2em solid fuchsia;
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -53,14 +66,14 @@ import FooterBox from "@/components/FooterBox.vue";
 
 #bannerBox {
   width: 90%;
-  border: .25rem solid blueviolet;
-  margin: 1.5rem auto;
+  border: .25em solid blueviolet;
+  margin: 1.5em auto;
   z-index: 0;
 }
 
 #mainContent {
   width: 90%;
-  border: .25rem solid blueviolet;
+  border: .25em solid blueviolet;
   margin: 0 auto;
 }
 
@@ -68,14 +81,14 @@ import FooterBox from "@/components/FooterBox.vue";
   min-width: 24px;
   min-height: 24px;
   margin: 5px;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
 
 .bigButton {
   min-width: 48px;
   min-height: 48px;
   margin: 5px;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
 
 .colorPositive {

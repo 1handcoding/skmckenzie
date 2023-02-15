@@ -6,6 +6,8 @@ import { useSpeechSynthesis } from '@vueuse/core';
 import DropContent from '@/components/DropContent.vue'
 import DropDown from '@/components/DropDown.vue'
 import { provide, ref } from 'vue'
+import { useTitle } from '@vueuse/core'
+
 
 
 
@@ -26,6 +28,19 @@ const speech2 = new SpeechSynthesisUtterance('Hi-contrast is disabled')
 const speech3 = new SpeechSynthesisUtterance('Button size set to default')
 const speech4 = new SpeechSynthesisUtterance('Button size set to large')
 
+function jumpToHome() { 
+  document.getElementById("homeSection")!.focus();
+  const title = useTitle('Home', { titleTemplate: '%s | Kyle McKenzie' });
+}
+function jumpToAbout() { 
+  const title = useTitle('About', { titleTemplate: '%s | Kyle McKenzie' });
+}
+function toggleMethods() { 
+  const title = useTitle('Methodology', { titleTemplate: '%s | Kyle McKenzie'});
+}
+function toggleNext() { 
+  const title = useTitle('Next Steps', { titleTemplate: '%s | Kyle McKenzie' });
+}
 
 function toggleBypass() {
   bypassOpen.value = !bypassOpen.value
@@ -36,6 +51,10 @@ function accessOptions() {
 function speakHCM() {
   if (hcmToggle.value) { window.speechSynthesis.speak(speech1) }
   else if (!hcmToggle.value) { window.speechSynthesis.speak(speech2) }
+}
+function speakBButtons() {
+  if (bigButtonToggle.value) { window.speechSynthesis.speak(speech3) }
+  else if (!bigButtonToggle.value) { window.speechSynthesis.speak(speech4) }
 }
 function toggleHCM() { 
   hcmToggle.value = !hcmToggle.value;
@@ -69,7 +88,10 @@ function toggleBigButtons() {
             <DropContent>
               <template #dropContent>
                 <div id="nav_menu" v-if="bypassOpen " class="dropDown colorPositive">
-                  <li><a href="homeSection">Home</a></li>
+                  <ul><a href="homeSection" @click.stop="jumpToHome()">Home</a></ul>
+                  <ul><a href="aboutSection" @click.stop="jumpToAbout()">About</a></ul>
+                  <ul><a href="methodsSection">Methodology</a></ul>
+                  <ul><a href="nextSection">Next Steps</a></ul>
                 </div>
               </template>
             </DropContent>
@@ -80,7 +102,7 @@ function toggleBigButtons() {
           <template #toggler>
             <button role="switch" type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
           </template>
-            <DropContent>
+          <DropContent>
           <template #dropContent>
             <div id="id_access_menu" v-if="showAccess" class="dropDown colorPositive">
               <ul>
@@ -88,12 +110,12 @@ function toggleBigButtons() {
                 <span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
               </ul>
               <ul>
-                <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button>
+                <button @click.stop="toggleBigButtonsOn(); toggleBigButtons(); speakBButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button>
                 <span class="material-symbols-outlined"  :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
               </ul>
             </div>
           </template>
-        </DropContent>
+          </DropContent>
         </DropDown>
       </ul>
     </ul>

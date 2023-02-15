@@ -1,27 +1,21 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useAccessOptionsStore } from "@/stores/accessOptionsStore";
 import { storeToRefs } from 'pinia';
 import { useTitle, set, useMouseInElement, useCurrentElement } from '@vueuse/core';
 import ariaButton from '@/components/ariaButton.vue'
-import expandBox from './expandBox.vue';
-import expandSectionBar from './expandSectionBar.vue';
-import expandSectionBox from './expandSectionBox.vue';
 const store = useAccessOptionsStore();
 const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
-const targetSection = ref(null)
-
-let expIcon = "expand_more";
-let expIcon2 = "expand_more";
-let expIcon3 = "expand_more";
-let expIcon4 = "expand_more";
 let showHome = ref(false);
 let showAbout = ref(false);
 let showMethods = ref(false);
 let showNext = ref(false);
-const title = useTitle();
+let expIcon = "expand_more";
+let expIcon2 = "expand_more";
+let expIcon3 = "expand_more";
+let expIcon4 = "expand_more";
 
+const title = useTitle();
 function toggleHome() { 
   showHome.value = !showHome.value;
   document.getElementById("homeSection")!.focus();
@@ -63,18 +57,16 @@ function toggleNext() {
     expIcon4="expand_more"
   }
 }
-let msg = ref('')
-let count = ref(0)
-function addOne() {
-count.value +=1
-}
-function reset() {
-  count.value = 0
-}
 </script>
+
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <slot name="propsTest" :count="count" :addOne="addOne" /><slot name="reset" :reset="reset"/>
+  <div>
+    <button @click="toggler">{{ buttonName }}
+    <span>{{iconName}}</span>
+    </button>
   </div>
 </template>
+
+<style>
+
+</style>
