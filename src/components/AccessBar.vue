@@ -88,10 +88,10 @@ function toggleBigButtons() {
             <DropContent>
               <template #dropContent>
                 <div id="nav_menu" v-if="bypassOpen " class="dropDown colorPositive">
-                  <ul><a href="homeSection" @click.stop="jumpToHome()">Home</a></ul>
-                  <ul><a href="aboutSection" @click.stop="jumpToAbout()">About</a></ul>
-                  <ul><a href="methodsSection">Methodology</a></ul>
-                  <ul><a href="nextSection">Next Steps</a></ul>
+                  <li><a href="homeSection" @click.stop="jumpToHome()">Home</a></li>
+                  <li><a href="aboutSection" @click.stop="jumpToAbout()">About</a></li>
+                  <li><a href="methodsSection">Methodology</a></li>
+                  <li><a href="nextSection">Next Steps</a></li>
                 </div>
               </template>
             </DropContent>
@@ -156,5 +156,12 @@ function toggleBigButtons() {
   margin: 0;
   background-color: none;
   z-index: 999;
+  border: 0.5em solid #660330;
+  border-radius: 0.5rem;
+  margin-top: -0.5rem;
+}
+
+li {
+  list-style: none;
 }
 </style>

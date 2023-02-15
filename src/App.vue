@@ -1,11 +1,11 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import AccessBar from "@/components/AccessBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
-import MainContent from "@/components/MainContent.vue";
 import FooterBox from "@/components/FooterBox.vue";
 import { storeToRefs } from 'pinia';
 import { useAutoDerivedStore } from "@/stores/autoDerivedStore";
-import AriaButton from "./components/ariaButton.vue";
+import expandBox from "@/components/expandBox.vue";
 const autoStore = useAutoDerivedStore();
 const pixelRatio = storeToRefs(autoStore)
 const msg ="it works"
@@ -21,16 +21,15 @@ const msg ="it works"
     <div id="bannerBox">
       <app-header />
     </div>
-    <AriaButton :message=msg>
-      <template v-slot:propsTest="{ count, addOne }">
-        <p>{{ count }}</p>
-        <button @click="addOne" class="Red">Add One</button>
-      </template>
-      <template v-slot:reset="{reset}">
-        <button @click="reset"></button>
-      </template>
-    </AriaButton>
+    <div id="mainContent">
+    <expandBox />
+    </div>  
+    <div id="footer">
+    <FooterBox />
+    </div>
   </div>
+  
+  
 </template>
 
 <style>
@@ -57,11 +56,12 @@ const msg ="it works"
 #masterbox {
   position: absolute;
   top: 0;
-  margin: 0;
+  margin: auto;
   border: 0.2em solid fuchsia;
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  justify-self: center;
+  width: 90vw;
 }
 
 #bannerBox {
