@@ -11,11 +11,15 @@ https://fosstodon.org/@onehandcoding" translate="no">@onehandcoding@fosstodon.or
   </div>
 </template>
 
-<style>
+<style scoped>
 #footer {
   width: 100%;
   display: flex;
   justify-content: center;
+  font-size: 1.2rem;
 }
 
+#footer p {
+  font-size: 1.2rem;
+}
 </style>

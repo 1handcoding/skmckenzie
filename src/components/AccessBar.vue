@@ -1,15 +1,19 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import { useAccessOptionsStore } from '@/stores/accessOptionsStore';
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useSpeechSynthesis } from '@vueuse/core'
+import { useSpeechSynthesis } from '@vueuse/core';
+import DropContent from '@/components/DropContent.vue'
+import DropDown from '@/components/DropDown.vue'
+import { provide, ref } from 'vue'
+import { useTitle } from '@vueuse/core'
+
+
 
 
 const store = useAccessOptionsStore();
 const { hiContrastOn, bigButtonsOn } = storeToRefs(store);
 const { toggleHiContrastOn, toggleBigButtonsOn } = store;
-
 
 const bypassOpen = ref(false)
 const showAccess = ref(false)
@@ -24,6 +28,19 @@ const speech2 = new SpeechSynthesisUtterance('Hi-contrast is disabled')
 const speech3 = new SpeechSynthesisUtterance('Button size set to default')
 const speech4 = new SpeechSynthesisUtterance('Button size set to large')
 
+function jumpToHome() { 
+  document.getElementById("homeSection")!.focus();
+  const title = useTitle('Home', { titleTemplate: '%s | Kyle McKenzie' });
+}
+function jumpToAbout() { 
+  const title = useTitle('About', { titleTemplate: '%s | Kyle McKenzie' });
+}
+function toggleMethods() { 
+  const title = useTitle('Methodology', { titleTemplate: '%s | Kyle McKenzie'});
+}
+function toggleNext() { 
+  const title = useTitle('Next Steps', { titleTemplate: '%s | Kyle McKenzie' });
+}
 
 function toggleBypass() {
   bypassOpen.value = !bypassOpen.value
@@ -34,6 +51,10 @@ function accessOptions() {
 function speakHCM() {
   if (hcmToggle.value) { window.speechSynthesis.speak(speech1) }
   else if (!hcmToggle.value) { window.speechSynthesis.speak(speech2) }
+}
+function speakBButtons() {
+  if (bigButtonToggle.value) { window.speechSynthesis.speak(speech3) }
+  else if (!bigButtonToggle.value) { window.speechSynthesis.speak(speech4) }
 }
 function toggleHCM() { 
   hcmToggle.value = !hcmToggle.value;
@@ -56,62 +77,51 @@ function toggleBigButtons() {
 </script>
 
 <template>
-  <div>
+  <div id="topBar">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <ul id="menubar" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-        <ul><button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
-            <ul id="id_bypass_links" class="colorPositive" :class="{hcmPositive: hiContrastOn}" v-if="bypassOpen">
-                <ul>
-                    <a href="homeSection">Home</a>
-                </ul>
-                <ul>
-                    <a href="aboutSection">About</a>
-                </ul>
-                <ul>
-                    <a href="methodsSection">Methods</a>
-                </ul>
-                <ul>
-                    <a href="nextSection">Next Steps</a>
-                </ul>
-            </ul>
-          </ul>
-        <ul><button type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
-                <ul id="id_about_menu" v-if="showAccess">
-                    <li>
-                        <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button><span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
-                    </li>
-                    <li>
-                        <button @click.stop="toggleBigButtonsOn(); toggleBigButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button><span class="material-symbols-outlined" :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
-                    </li>
-                </ul>
+    <ul id="menubar">
+      <ul>
+          <DropDown>
+            <template #toggler>
+              <button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
+            </template>
+            <DropContent>
+              <template #dropContent>
+                <div id="nav_menu" v-if="bypassOpen " class="dropDown colorPositive">
+                  <li><a href="homeSection" @click.stop="jumpToHome()">Home</a></li>
+                  <li><a href="aboutSection" @click.stop="jumpToAbout()">About</a></li>
+                  <li><a href="methodsSection">Methodology</a></li>
+                  <li><a href="nextSection">Next Steps</a></li>
+                </div>
+              </template>
+            </DropContent>
+          </DropDown>
+      </ul>
+      <ul>
+        <DropDown>
+          <template #toggler>
+            <button role="switch" type="button" :aria-expanded="showAccess" aria-controls="show_accessibility_options" @click.stop="accessOptions">Accessibility Options</button>
+          </template>
+          <DropContent>
+          <template #dropContent>
+            <div id="id_access_menu" v-if="showAccess" class="dropDown colorPositive">
+              <ul>
+                <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button>
+                <span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
               </ul>
+              <ul>
+                <button @click.stop="toggleBigButtonsOn(); toggleBigButtons(); speakBButtons()" :aria-pressed="`${bigButtonToggle}`">Toggle Big Buttons</button>
+                <span class="material-symbols-outlined"  :class="{toggleOn: bigButtonToggle}">{{togIconB}}</span>
+              </ul>
+            </div>
+          </template>
+          </DropContent>
+        </DropDown>
+      </ul>
     </ul>
   </div>
 </template>
 <style>
-#menubar {
-  min-width: 100%;
-  display: inline-flex;
-  justify-content: space-around;
-}
-#menubar>.button {
-  background-color: whitesmoke;
-  color: #660330;
-  padding: 3px;
-  font-size: 32;
-}
-#accessoptions {
-  border: 5px solid;
-  display: flex;
-  flex-direction: row;
-  float: start;
-}
-#toggle {
-border-radius: 0.e5em;
-width: 1.5em}
-.toggleoff {
-  background-color: gray;
-}
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -120,8 +130,38 @@ width: 1.5em}
   'GRAD' 0,
   'opsz' 48
 }
+
 .toggleOn {
   font-variation-settings:
   'FILL' 1;
+}
+
+#menubar {
+  width: 100vw;
+  height: 24px;
+  margin-top: 0px;
+  margin-bottom: auto;
+  padding: 3px;
+  display: inline-flex;
+  justify-content: space-around;
+  background-color: #660330;
+  border: 5px solid orange;
+  z-index: 999;
+}
+
+.dropDown {
+  float: inline-start;
+  padding: 4px;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0;
+  background-color: none;
+  z-index: 999;
+  border: 0.5em solid #660330;
+  border-radius: 0.5rem;
+  margin-top: -0.5rem;
+}
+
+li {
+  list-style: none;
 }
 </style>

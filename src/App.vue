@@ -1,18 +1,35 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import AccessBar from "@/components/AccessBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
-import MainContent from "@/components/MainContent.vue";
 import FooterBox from "@/components/FooterBox.vue";
+import { storeToRefs } from 'pinia';
+import { useAutoDerivedStore } from "@/stores/autoDerivedStore";
+import expandBox from "@/components/expandBox.vue";
+const autoStore = useAutoDerivedStore();
+const pixelRatio = storeToRefs(autoStore)
+const msg ="it works"
+
 
 </script>
 
 <template>
   <div id="masterbox">
-    <access-bar />
-    <app-header />
-    <main-content />
-    <footer-box />
+    <div id="topper">
+      <access-bar />
+    </div>
+    <div id="bannerBox">
+      <app-header />
+    </div>
+    <div id="mainContent">
+    <expandBox />
+    </div>  
+    <div id="footer">
+    <FooterBox />
+    </div>
   </div>
+  
+  
 </template>
 
 <style>
@@ -22,32 +39,56 @@ import FooterBox from "@/components/FooterBox.vue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Montserrat, Arial, sans-serif;
+  font-size: 16px;
   font-weight: 600;
+  width: 100vw;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
+#topper {
+  z-index: 999
 }
 #masterbox {
-  min-width: 100%;
-  text-align: center;
-  height: 100%;
-  background-color:whitesmoke;
+  position: absolute;
+  top: 0;
+  margin: auto;
+  border: 0.2em solid fuchsia;
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  border: 5px solid blue ;
-  margin: 0 0;
+  flex-direction: column;
+  justify-self: center;
+  width: 90vw;
+}
+
+#bannerBox {
+  width: 90%;
+  border: .25em solid blueviolet;
+  margin: 1.5em auto;
+  z-index: 0;
+}
+
+#mainContent {
+  width: 90%;
+  border: .25em solid blueviolet;
+  margin: 0 auto;
 }
 
 .button {
   min-width: 24px;
   min-height: 24px;
   margin: 5px;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
+
 .bigButton {
   min-width: 48px;
   min-height: 48px;
   margin: 5px;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
 
 .colorPositive {
@@ -55,6 +96,7 @@ import FooterBox from "@/components/FooterBox.vue";
   background-color: #CDFFFE;
   border-color: #660330;
 }
+
 .colorNegative {
   color:#CDFFFE;
   background-color: #660330;
@@ -74,19 +116,4 @@ import FooterBox from "@/components/FooterBox.vue";
 [role="heading"] {
     justify-self: center;
   }
-
-  #contentbox {
-  border: solid 5px;
-  width: 95%;
-  border-radius: 1em;
-  justify-content: center;
-  display: flex;
-  flex-flow: column wrap;
-}
-
-h3{
-  text-decoration: underline;
-}
-
-
 </style>
