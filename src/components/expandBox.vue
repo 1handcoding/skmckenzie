@@ -190,6 +190,9 @@ function toggleNext() {
   display: flex;
   flex-flow: row wrap;
 }
+.expBox .dropDown {
+  width: 100%;
+}
 .secBar {
   width: 85%;
   margin: 0 auto;
