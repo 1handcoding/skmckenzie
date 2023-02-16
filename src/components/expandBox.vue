@@ -64,9 +64,10 @@ function toggleNext() {
 
 <template>
   <div>
-    <div>
+    <div id="contentSection">
       <expandSectionBar>
         <template #homeSection="homeSectionProps">
+        <div class="expBox">
           <button id={{homeSectionProps.idTag}} 
                   role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
@@ -76,14 +77,16 @@ function toggleNext() {
                   <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{homeSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon}}</span>
           </button>
-          <div v-show="showHome" class="dropDown" :class="{ hcmPositive: hiContrastOn }">
+          <br />
+          <div v-show="showHome" class="dropDown">
             <p>Welcome to my accessibility demonstration</p>
           </div>
+        </div>
         </template>
-        <br />
         <template #aboutSection="aboutSectionProps">
+          <div class="expBox">
           <button id={{aboutSectionProps.idTag}} 
-                  role="button" class="secBar colorNegative button" 
+                  role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn, bigButton: bigButtonsOn }" 
                   aria-controls="show_about" 
                   @click.prevent="toggleAbout()" 
@@ -91,12 +94,14 @@ function toggleNext() {
                   <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{aboutSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon2}}</span>
           </button>
+          <br />
           <div v-show="showAbout" class="dropDown">
             <p>Hi, I'm Kyle McKenzie, and I want to be an accessibility engineer. On this page, I'm experimenting with implementing better accessibility in Vue.js. As the usage of reactive frameworks is rapidly increasing, it is vital that accessibility practices keep pace. Reactive frameworks currently have an appallingly poor reputation for ease of access that must be addressed.</p>
           </div>
+        </div>
         </template>
-        <br />
         <template #methodsSection="methodsSectionProps">
+          <div class="expBox">
           <button id={{methodsSectionProps.idTag}} 
                   role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
@@ -106,8 +111,8 @@ function toggleNext() {
                   <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{methodsSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon3}}</span>
           </button>
+          <br />
           <div v-show="showMethods" class="dropDown">
-            <h2 id="methodsSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">Methods</h2>
             <h2 aria-level="3">Current</h2>
 
             <h3 aria-level="4">Conditional Rendering</h3>
@@ -139,9 +144,10 @@ function toggleNext() {
               With Vue Router couldn't properly manage focus or accommodate the recommended bypass links as easily, and "accordion-style" seems to be more popular and familiar.
                 </p>
           </div>
+        </div>
         </template>
-        <br />
         <template #nextSection="nextSectionProps">
+          <div class="expBox">
           <button id={{nextSectionProps.idTag}} role="button" 
                   class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
@@ -151,6 +157,7 @@ function toggleNext() {
                   <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{nextSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon4}}</span>
           </button>
+          <br />
           <div v-show="showNext" class="dropDown">
             <ul>
               <li>Correct useTitle for use with "accordion-style" page, using vueUse functionality to report which element is currently targeted by the user.</li>
@@ -164,6 +171,7 @@ function toggleNext() {
               <li>Reduce the amount of essentially redundant code even more w/ dynamic templating</li>
             </ul>
         </div>
+      </div>
         </template>
       </expandSectionBar>
     </div>
@@ -171,8 +179,19 @@ function toggleNext() {
 </template>
 
 <style>
+#contentSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.expBox {
+  justify-self: center;
+  border: 1rem solid turquoise;
+  display: flex;
+  flex-flow: row wrap;
+}
 .secBar {
-  width: 25%;
+  width: 85%;
   margin: 0 auto;
   border-radius: 0.5em;
   display: inline-flex;

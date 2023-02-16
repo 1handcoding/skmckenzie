@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="topButton">
-  <slot name="dropContent"/>
+    <slot name="dropContent"/>
   </div>
 </template>
 

@@ -8,13 +8,13 @@ import { useAutoDerivedStore } from "@/stores/autoDerivedStore";
 import expandBox from "@/components/expandBox.vue";
 const autoStore = useAutoDerivedStore();
 const pixelRatio = storeToRefs(autoStore)
-const msg ="it works"
+
 
 
 </script>
 
 <template>
-  <div id="masterbox">
+  <div>
     <div id="topper">
       <access-bar />
     </div>
@@ -48,34 +48,24 @@ const msg ="it works"
   position: absolute;
   top: 0;
   left: 0;
+  border: 3px solid orange;
 }
 
 #topper {
   z-index: 999
 }
-#masterbox {
-  position: absolute;
-  top: 0;
-  margin: auto;
-  border: 0.2em solid fuchsia;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
+#mainContent {
+  margin: 0 auto;
   width: 90vw;
+  border: 3px solid blue;
 }
 
 #bannerBox {
   width: 90%;
-  border: .25em solid blueviolet;
   margin: 1.5em auto;
   z-index: 0;
 }
 
-#mainContent {
-  width: 90%;
-  border: .25em solid blueviolet;
-  margin: 0 auto;
-}
 
 .button {
   min-width: 24px;
@@ -116,4 +106,7 @@ const msg ="it works"
 [role="heading"] {
     justify-self: center;
   }
+li {
+  margin-bottom: 1rem;
+}
 </style>

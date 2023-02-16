@@ -22,7 +22,8 @@ import { storeToRefs } from 'pinia';
   }
   #main-title {
     align-self: center;
-    margin: auto auto;
+    margin: 0 auto;
+    padding: 1rem 0rem;
   }
 
 </style>

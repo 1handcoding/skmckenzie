@@ -145,7 +145,6 @@ function toggleBigButtons() {
   display: inline-flex;
   justify-content: space-around;
   background-color: #660330;
-  border: 5px solid orange;
   z-index: 999;
 }
 
