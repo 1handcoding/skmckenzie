@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vue-a11y/skip-to": "^3.0.3",
     "@vueuse/core": "^9.7.0",
     "jQuery": "^1.7.4",
     "pinia": "^2.0.28",

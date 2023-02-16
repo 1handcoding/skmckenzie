@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia';
 </script>
 <template>
   <header id="banner" class="colorNegative" :class="{hcmNegative: hiContrastOn}">
-      <h1 id="main-title" role="heading" aria-label="String(element.innerHTML)" aria-level="1">Accessibility Using Vue.js</h1>
+      <h1 id="main-title" role="heading" aria-level="1">Accessibility Using Vue.js</h1>
   </header>
 </template>
 <style scoped>

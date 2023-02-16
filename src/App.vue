@@ -6,6 +6,9 @@ import FooterBox from "@/components/FooterBox.vue";
 import { storeToRefs } from 'pinia';
 import { useAutoDerivedStore } from "@/stores/autoDerivedStore";
 import expandBox from "@/components/expandBox.vue";
+import type VueSkipTo from "@vue-a11y/skip-to";
+import '@vue-a11y/skip-to/dist/style.css'
+
 const autoStore = useAutoDerivedStore();
 const pixelRatio = storeToRefs(autoStore)
 
@@ -16,6 +19,7 @@ const pixelRatio = storeToRefs(autoStore)
 <template>
   <div>
     <div id="topper">
+      <VueSkipTo to="#mainContent" label="skipTo Content"/>
       <access-bar />
     </div>
     <div id="bannerBox">

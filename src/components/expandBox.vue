@@ -162,6 +162,7 @@ function toggleNext() {
           <div v-show="showNext" class="dropDown">
             <ul>
               <li>Check for screen reader narration errors, fix</li>
+              <li>Fix css for overlays, sizing</li>
               <li>Add focus traps to allow for keyboard navigation within elements, lists</li>
               <li>Expand custom color styling to auto-load based on color preferences set in browser</li>
               <li>Test modifying custom button classes automatically in response to zoom level, device orientation</li>

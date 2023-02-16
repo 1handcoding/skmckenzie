@@ -32,16 +32,18 @@ function jumpToHome() {
   document.getElementById("homeSection")!.focus();
   const title = useTitle('Home', { titleTemplate: '%s | Kyle McKenzie' });
 }
-function jumpToAbout() { 
+function jumpToAbout() {
+  document.getElementById("aboutSection")!.focus();
   const title = useTitle('About', { titleTemplate: '%s | Kyle McKenzie' });
 }
-function toggleMethods() { 
-  const title = useTitle('Methodology', { titleTemplate: '%s | Kyle McKenzie'});
+function jumpToMethods() { 
+  document.getElementById("methodsSection")!.focus();
+  const title = useTitle('Methodology', { titleTemplate: '%s | Kyle McKenzie' });
 }
-function toggleNext() { 
+function jumpToNext() { 
+  document.getElementById("nextSection")!.focus();
   const title = useTitle('Next Steps', { titleTemplate: '%s | Kyle McKenzie' });
 }
-
 function toggleBypass() {
   bypassOpen.value = !bypassOpen.value
 }
@@ -77,21 +79,22 @@ function toggleBigButtons() {
 </script>
 
 <template>
-  <div id="topBar">
+  <div id="topBar" aria-role="menu">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <ul id="menubar">
       <ul>
           <DropDown>
             <template #toggler>
-              <button type="button" :aria-expanded="bypassOpen" aria-controls="id_bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
+              <button type="button" :aria-expanded="bypassOpen" aria-controls="bypass_links" @click.stop="toggleBypass()">Bypass Links</button>
             </template>
             <DropContent>
               <template #dropContent>
-                <div id="nav_menu" v-if="bypassOpen " class="dropDown colorPositive">
-                  <li><a href="homeSection" @click.stop="jumpToHome()">Home</a></li>
-                  <li><a href="aboutSection" @click.stop="jumpToAbout()">About</a></li>
-                  <li><a href="methodsSection">Methodology</a></li>
-                  <li><a href="nextSection">Next Steps</a></li>
+                <div v-if="bypassOpen" id="nav_menu" aria-role="navigation" class="dropDown colorPositive">
+                  <li><a @click.prevent="jumpToHome()" tabindex="-1">Home</a></li>
+                  <li><a @click.prevent="jumpToAbout()" tabindex="-1">About</a></li>
+                  <li><a @click.prevent="jumpToMethods()" tabindex="-1">Methodology</a></li>
+                  <li><a @click.prevent="jumpToNext()" tabindex="-1">Next Steps</a></li>
+
                 </div>
               </template>
             </DropContent>
@@ -104,7 +107,7 @@ function toggleBigButtons() {
           </template>
           <DropContent>
           <template #dropContent>
-            <div id="id_access_menu" v-if="showAccess" class="dropDown colorPositive">
+            <div id="access_options" v-if="showAccess" class="dropDown colorPositive">
               <ul>
                 <button @click.stop="toggleHiContrastOn(); toggleHCM(); speakHCM()" :aria-pressed="`${hcmToggle}`">Toggle Hi-Contrast</button>
                 <span class="material-symbols-outlined" :class="{toggleOn: hcmToggle}">{{togIconA}}</span>
@@ -158,6 +161,7 @@ function toggleBigButtons() {
   border: 0.5em solid #660330;
   border-radius: 0.5rem;
   margin-top: -0.5rem;
+  padding-left: 2em;
 }
 
 li {
