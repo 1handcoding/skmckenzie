@@ -48,7 +48,6 @@ const pixelRatio = storeToRefs(autoStore)
   position: absolute;
   top: 0;
   left: 0;
-  border: 3px solid orange;
 }
 
 #topper {
@@ -57,7 +56,6 @@ const pixelRatio = storeToRefs(autoStore)
 #mainContent {
   margin: 0 auto;
   width: 90vw;
-  border: 3px solid blue;
 }
 
 #bannerBox {

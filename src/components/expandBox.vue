@@ -186,12 +186,12 @@ function toggleNext() {
 }
 .expBox {
   justify-self: center;
-  border: 1rem solid turquoise;
   display: flex;
   flex-flow: row wrap;
 }
 .expBox .dropDown {
   width: 100%;
+  margin-bottom: 1em;
 }
 .secBar {
   width: 85%;
