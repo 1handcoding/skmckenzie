@@ -67,14 +67,14 @@ function toggleNext() {
     <div id="contentSection">
       <expandSectionBar>
         <template #homeSection="homeSectionProps">
-        <div class="expBox">
-          <button id={{homeSectionProps.idTag}} 
+        <div class="expBox" aria-label="homeHead" tabindex="-1">
+          <button id="homeSection"
                   role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
-                  aria-controls="show_home" 
+                  aria-controls="expand_home_section" 
                   @click.prevent="toggleHome()" 
                   :aria-expanded="`${showHome}`">
-                  <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{homeSectionProps.labelName}}</h2>
+                  <h2 id="homeHead" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{homeSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon}}</span>
           </button>
           <br />
@@ -84,14 +84,15 @@ function toggleNext() {
         </div>
         </template>
         <template #aboutSection="aboutSectionProps">
-          <div class="expBox">
-          <button id={{aboutSectionProps.idTag}} 
+          <div class="expBox" aria-label="aboutSection" tabindex="-1">
+          <button id="aboutSection"
+
                   role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn, bigButton: bigButtonsOn }" 
                   aria-controls="show_about" 
                   @click.prevent="toggleAbout()" 
                   :aria-expanded="`${showAbout}`">
-                  <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{aboutSectionProps.labelName}}</h2>
+                  <h2 id="nextHead" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{aboutSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon2}}</span>
           </button>
           <br />
@@ -101,19 +102,19 @@ function toggleNext() {
         </div>
         </template>
         <template #methodsSection="methodsSectionProps">
-          <div class="expBox">
-          <button id={{methodsSectionProps.idTag}} 
+          <div class="expBox" id="methodology" ref="methods">
+          <button id="methodsSection" 
                   role="button" class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
                   aria-controls="show_methodology" 
                   @click.prevent="toggleMethods()" 
                   :aria-expanded="`${showMethods}`">
-                  <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{methodsSectionProps.labelName}}</h2>
+                  <h2 id="methodsHead" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{methodsSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon3}}</span>
           </button>
           <br />
           <div v-show="showMethods" class="dropDown">
-            <h2 aria-level="3">Current</h2>
+            <h2 aria-level="3" class="subheader">Current</h2>
 
             <h3 aria-level="4">Conditional Rendering</h3>
             <p>Conditional rendering can be used to toggle visibility. Here it is employed to initially hide advanced accessibility features. This allows accessibility options to be anchored at the top of the page, where they are easy to locate, without obstructing the page flow for users who don't want or need them</p>
@@ -129,7 +130,7 @@ function toggleNext() {
             <h3 aria-level="4">window.SpeechSynthesis</h3>
             <p>Custom audio alerts are currently being added to toggle functions that are not automatically announced via screen reader. Implementation could potentially switch to useSpeechSynthesis from vueUse, but it was more difficult to implement initially.</p>
 
-            <h3 aria-level="3">Auto-Derived Values from Browser</h3>
+            <h3 aria-level="4">Auto-Derived Values from Browser</h3>
             <p>Various values and preferences are accessed using a variety of vueuse components. These can then be accessed from their own Pinia store and used to inform custom styling preferences throughout the site</p>
             <ul>Currently Implemented, Styling Pending</ul>
             <li>useDevicePixelRatio is be used to respond to user zoom level and screen-enlargement</li>
@@ -147,28 +148,23 @@ function toggleNext() {
         </div>
         </template>
         <template #nextSection="nextSectionProps">
-          <div class="expBox">
-          <button id={{nextSectionProps.idTag}} role="button" 
+          <div class="expBox" aria-label="nextStepsSection">
+          <button id="nextSection" role="button" 
                   class="secBar colorNegative" 
                   :class="{ hcmNegative: hiContrastOn }" 
                   aria-controls="show_home" 
                   @click.prevent="toggleNext()" 
                   :aria-expanded="`${showNext}`">
-                  <h2 id="nextSection" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{nextSectionProps.labelName}}</h2>
+                  <h2 id="nextHead" class="colorNegative" :class="{hcmNegative: hiContrastOn}">{{nextSectionProps.labelName}}</h2>
                   <span class="material-symbols-rounded iconSpan">{{expIcon4}}</span>
           </button>
           <br />
           <div v-show="showNext" class="dropDown">
             <ul>
-              <li>Correct useTitle for use with "accordion-style" page, using vueUse functionality to report which element is currently targeted by the user.</li>
+              <li>Check for screen reader narration errors, fix</li>
+              <li>Add focus traps to allow for keyboard navigation within elements, lists</li>
               <li>Expand custom color styling to auto-load based on color preferences set in browser</li>
               <li>Test modifying custom button classes automatically in response to zoom level, device orientation</li>
-              <li>Use vueUse to add accessible alerts/audio feedback</li>
-              <li>Make methods page to display only one set of methods at a time, nested router?</li>
-              <li>Create usable functions to manage focus</li>
-              <li>Rectify all the ARIA labels, preferably by using dynamic HTML attributes</li>
-              <li>Add CSS styling for all the new content</li>
-              <li>Reduce the amount of essentially redundant code even more w/ dynamic templating</li>
             </ul>
         </div>
       </div>
@@ -188,17 +184,20 @@ function toggleNext() {
   justify-self: center;
   display: flex;
   flex-flow: row wrap;
+  z-index: 888;
 }
 .expBox .dropDown {
-  width: 100%;
+  width: 95%;
   margin-bottom: 1em;
+  color: #660330;
+  align-self: center;
 }
 .secBar {
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
-  border-radius: 0.5em;
+  border-radius: 3em;
   display: inline-flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 p {
@@ -208,6 +207,7 @@ p {
 }
 .iconSpan {
   font-size: 32px;
+  margin-left: 2em;
 }
 .secButton {
   background-color: transparent;
@@ -221,5 +221,8 @@ p {
 }
 .subheader {
   text-decoration: underline;
+}
+:focus {
+  border: 1em solid cyan;
 }
 </style>
