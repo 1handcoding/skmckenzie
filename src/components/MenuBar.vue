@@ -90,10 +90,10 @@ function toggleBigButtons() {
             <DropContent>
               <template #dropContent>
                 <div v-if="bypassOpen" id="nav_menu" aria-role="navigation" class="dropDown colorPositive">
-                  <li><a @click.prevent="jumpToHome()" tabindex="-1">Home</a></li>
-                  <li><a @click.prevent="jumpToAbout()" tabindex="-1">About</a></li>
-                  <li><a @click.prevent="jumpToMethods()" tabindex="-1">Methodology</a></li>
-                  <li><a @click.prevent="jumpToNext()" tabindex="-1">Next Steps</a></li>
+                  <li tabindex="0"><a @click.prevent="jumpToHome()" >Home</a></li>
+                  <li tabindex="0"><a @click.prevent="jumpToAbout()">About</a></li>
+                  <li tabindex="0"><a @click.prevent="jumpToMethods()">Methodology</a></li>
+                  <li tabindex="0"><a @click.prevent="jumpToNext()">Next Steps</a></li>
 
                 </div>
               </template>
@@ -166,5 +166,8 @@ function toggleBigButtons() {
 
 li {
   list-style: none;
+}
+[role='menu'] :focus{
+  font-weight: 700;
 }
 </style>

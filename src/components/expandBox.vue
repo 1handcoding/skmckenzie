@@ -64,7 +64,7 @@ function toggleNext() {
 
 <template>
   <div>
-    <div id="contentSection">
+    <div aria-role="main" id="contentSection">
       <expandSectionBar>
         <template #homeSection="homeSectionProps">
         <div class="expBox" aria-label="homeHead" tabindex="-1">

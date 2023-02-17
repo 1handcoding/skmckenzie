@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
-import AccessBar from "@/components/AccessBar.vue";
+import MenuBar from "@/components/MenuBar.vue";
 import AppHeader from "@/components/AppHeader.vue";
 import FooterBox from "@/components/FooterBox.vue";
 import { storeToRefs } from 'pinia';
@@ -20,14 +20,14 @@ const pixelRatio = storeToRefs(autoStore)
   <div>
     <div id="topper">
       <VueSkipTo to="#mainContent" label="skipTo Content"/>
-      <access-bar />
+      <menu-bar />
     </div>
     <div id="bannerBox">
       <app-header />
     </div>
-    <div id="mainContent">
+    <main id="mainContent" aria-role="main">
     <expandBox />
-    </div>  
+    </main>  
     <div id="footer">
     <FooterBox />
     </div>
@@ -85,7 +85,7 @@ const pixelRatio = storeToRefs(autoStore)
 
 .colorPositive {
   color: #660330;
-  background-color: #CDFFFE;
+  background-color: whitesmoke;
   border-color: #660330;
 }
 
